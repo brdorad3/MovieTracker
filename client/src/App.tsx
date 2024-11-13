@@ -1,5 +1,6 @@
 import './App.css'
 import Navbar from './navbar'
+import Hero from './hero'
 
 function App() {
  
@@ -8,6 +9,7 @@ function App() {
     <>
     <div className='w-screen h-full'>
     <Navbar/>
+    <Hero/>
     </div>
   
     </>

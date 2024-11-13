@@ -5,3 +5,45 @@
 #root{
   height: 100vh;
 }
+.n{
+  background:url(bat2.jpeg) ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
+@font-face {
+  font-family: "Teen";
+  src: local("Teen_0"),
+    url("./fonts/Teen_0.otf") format("opentype");
+  font-weight: normal;
+}
+.f{
+  font-family: "Teen";
+}
+@font-face {
+  font-family: "Danger";
+  src: local("Another Danger"),
+    url("./fonts/Another Danger - Demo.otf") format("opentype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Geosans";
+  src: local("GeosansLight.ttf"),
+    url("./fonts/GeosansLight.ttf") format("opentype");
+  font-weight: normal;
+}
+.b{
+  font-family: "Geosans";
+}
+.s{
+  font-family: "Danger";
+}
+.fade-effect1{
+  display:block;
+  border:none;
+  color:white;
+  height:2px;
+  width: 450px;
+  background:black;
+  background: linear-gradient(to right, black, red)
+}
