@@ -4,7 +4,7 @@ import { Search, SunMoon } from "lucide-react"
 
     return(
         <>
-        <nav className="h-[8%] w-screen bg-first  grid grid-cols-custom justify-center gap-x-[20px] items-center">
+        <nav className="h-[8%] w-full bg-first  grid grid-cols-custom justify-center gap-x-[20px] items-center">
             <h1 className="text-3xl text-acc ">Robnite</h1>
             <p className="col-start-3 text-sec ">MOVIES</p>
             <p className="col-start-4 text-sec">TV SHOWS</p>

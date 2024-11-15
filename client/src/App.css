@@ -4,6 +4,7 @@
 
 #root{
   height: 100vh;
+  max-width: 100vw;
 }
 .n{
   background:url(bat2.jpeg) ;
