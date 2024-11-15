@@ -17,9 +17,7 @@
     url("./fonts/Teen_0.otf") format("opentype");
   font-weight: normal;
 }
-.f{
-  font-family: "Teen";
-}
+
 @font-face {
   font-family: "Danger";
   src: local("Another Danger"),
@@ -32,11 +30,23 @@
     url("./fonts/GeosansLight.ttf") format("opentype");
   font-weight: normal;
 }
+@font-face {
+  font-family: "Blade";
+  src: local("BLADRMF_.TTF"),
+    url("./fonts/BLADRMF_.TTF") format("opentype");
+  
+}
+.a{
+  font-family: "Blade";
+}
 .b{
   font-family: "Geosans";
 }
 .s{
   font-family: "Danger";
+}
+.f{
+  font-family: "Teen";
 }
 .fade-effect1{
   display:block;
@@ -46,4 +56,11 @@
   width: 450px;
   background:black;
   background: linear-gradient(to right, black, red)
+}
+.margin{
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  margin-inline: auto; 
+  width: fit-content;
 }
