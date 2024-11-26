@@ -37,6 +37,15 @@
     url("./fonts/BLADRMF_.TTF") format("opentype");
   
 }
+@font-face {
+  font-family: "Lemon";
+  src: local("LEMONMILK-Medium.otf"),
+    url("./fonts/LEMONMILK-Medium.otf") format("opentype");
+  
+}
+.lemon{
+  font-family: "Lemon";
+}
 .a{
   font-family: "Blade";
 }

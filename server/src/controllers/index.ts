@@ -34,7 +34,7 @@ const search_movie = asyncHandler(async(req: Request, res: Response, next: NextF
           (item) => item.vote_count >= 50
         );
         filteredResults = filteredResults.sort((a,b) => b.popularity - a.popularity)
-        console.log(resp.results.length)
+        
         res.status(200).json(filteredResults)
       }else{
         res.status(404).json({ message: "No trending movies found." });
@@ -47,7 +47,24 @@ const search_movie = asyncHandler(async(req: Request, res: Response, next: NextF
       }
     
 })
+const details = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    if(req.body.item.media_type == "tv"){
+     const response = await moviedb.tvInfo({id:req.body.item.id})
+     res.status(200).json(response)
+    }else{
+      const response = await moviedb.movieInfo({id:req.body.item.id})
+     res.status(200).json(response)
+    }
+   
+      
+    } catch (e) {
+      console.log(e)
+    }
+  
+})
 
   export{
-    search_movie
+    search_movie,
+    details
   }

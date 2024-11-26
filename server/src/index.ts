@@ -1,6 +1,7 @@
 import express, { Express } from "express"
 import route from "./route/route"
 import cors from "cors"
+import bodyParser from "body-parser"
 const app = express()
 
 const corsOptions = {
@@ -9,6 +10,7 @@ const corsOptions = {
     optionSuccessStatus: 200
   };
 
+app.use(express.json())
 app.use(cors(corsOptions))
 app.use("/", route)
 
