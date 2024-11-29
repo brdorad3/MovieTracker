@@ -2,13 +2,7 @@ import { useLocation } from "react-router-dom"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { PlayCircle } from "lucide-react"
-
-interface info{
-    backdrop_path: string,
-    genres: [],
-   
-
-}
+import {DateTime} from "luxon"
 
 const Details = (props: any) => {
     const location = useLocation()
@@ -28,8 +22,11 @@ const Details = (props: any) => {
         handleClick(info)
       },[])
 
-    
-console.log(detailedInfo)
+      console.log(detailedInfo)
+      let dt
+    detailedInfo ?  dt = DateTime.fromISO(detailedInfo.release_date || detailedInfo.first_air_date) : dt = "no"
+
+let sm = dt.toLocaleString(DateTime.DATE_MED)
 
     return (
         <>
@@ -49,7 +46,9 @@ console.log(detailedInfo)
   <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
     <div className="flex flex-col col-span-2">
       <h1 className="text-white lemon text-[90px] tracking-wider whitespace-nowrap">
-        {detailedInfo.title}
+        {detailedInfo.title? 
+        detailedInfo.title:
+        detailedInfo.name}
       </h1>
       <ul className="flex gap-5">
         {detailedInfo.genres &&
@@ -69,6 +68,9 @@ console.log(detailedInfo)
       Watch Trailer <PlayCircle></PlayCircle>
     </button>
   </div>
+  <div className="row-start-11">
+      <p className="text-acc whitespace-nowrap b text-xl font-bold tracking-widest">{sm}</p>
+    </div>
 </div>
 
         
