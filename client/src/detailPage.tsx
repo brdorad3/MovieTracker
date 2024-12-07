@@ -1,17 +1,18 @@
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { PlayCircle } from "lucide-react";
 import { DateTime } from "luxon";
-import  ColorThief  from "colorthief"
+import Description from "./description";
+import Photos from "./photos";
 
 
-
-const Details = (props: any) => {
+const Details = () => {
   const location = useLocation();
   const info = location.state;
   const [detailedInfo, setDetailedInfo] = useState<any>();
-  const [dominantColor, setDominantColor] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState("Description");
+
 
 
   const handleClick = async (item: any) => {
@@ -30,6 +31,26 @@ const Details = (props: any) => {
     handleClick(info);
   }, []);
 
+  const handlePageChange = (e: any) => {
+    setCurrentPage(e.target.innerText);
+  }
+  const showPage = () => {
+    switch (currentPage) {
+      case "Description":
+        return <Description state={detailedInfo} />
+        break;
+        case "Photos":
+        return <Photos/>
+        break;
+    
+      default:
+        return <Description/>
+        break;
+    }
+  }
+  useEffect(()=>{
+    showPage()
+  },[currentPage])
 
 
   let dt;
@@ -41,25 +62,8 @@ const Details = (props: any) => {
 
   let sm = dt.toLocaleString(DateTime.DATE_MED);
 
-  useEffect(() => {
-    if (detailedInfo?.backdrop_path) {
-      // Load the image programmatically for ColorThief
-      const image = new Image();
-      
-      let googleProxyURL = "https://corsproxy.io/?";
-      let ima = `https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path}`;
-      image.crossOrigin = 'anonymous';
-      image.src = googleProxyURL + encodeURIComponent(ima);
-      image.onload = () => {
-        const colorThief = new ColorThief();
-        const dominant = colorThief.getColor(image); // Extract dominant color
-        setDominantColor(`rgb(${dominant[0]}, ${dominant[1]}, ${dominant[2]})`);
-      };
-    }
-  }, [detailedInfo]);
-
-  dominantColor && console.log(dominantColor)
-
+ detailedInfo && console.log(detailedInfo)
+  
   return (
     <>
       {detailedInfo && (
@@ -78,8 +82,7 @@ const Details = (props: any) => {
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">
               <h1
-                className="lemon text-[90px] tracking-wider whitespace-nowrap text-white"
-                
+                className= "lemon text-[90px] tracking-wider whitespace-nowrap text-white"
               >
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
@@ -109,13 +112,17 @@ const Details = (props: any) => {
           </div>
           <div className="col-span-full h-96 bg-white row-start-12">
             <ul className="grid grid-cols-5 justify-items-center h-16 items-center">
-              <li className="border-b border-yellow">Description</li>
-              <li>Photos</li>
-              <li>Videos</li>
-              <li>Ratings</li>
-              <li>Cast</li>
+              <li className="border-b border-acc" onClick={(e) => handlePageChange(e)}>Description</li>
+              <li onClick={(e) => handlePageChange(e)}> Photos</li>
+              <li onClick={(e) => handlePageChange(e)}> Videos</li>
+              <li onClick={(e) => handlePageChange(e)}> Ratings</li>
+              <li onClick={(e) => handlePageChange(e)}> Cast</li>
             </ul>
+            <div className="px-16 py-10">
+             {showPage()}
+            </div>
           </div>
+          
         </div>
       )}
     </>
