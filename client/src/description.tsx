@@ -6,8 +6,21 @@ const Description = (props: any) => {
         <>
         {info &&
         <div>
-            <h1>Plot</h1>
+            <h1 className="b font-bold text-sm py-3">{info.tagline.toUpperCase()}</h1>
             <p>{info.overview}</p>
+            <div>
+               <div className="flex gap-2">
+                    <h2 className="font-bold">Languages </h2>
+                    {info.languages ? info.languages.map((item: any) => (
+                        <p>{item}</p>
+                    )):
+                    info.spoken_languages.map((item: any) => (
+                        <p>{item.name}</p>
+                    ))
+                    
+                    }
+               </div>
+            </div>
         </div>
         }
         </>
