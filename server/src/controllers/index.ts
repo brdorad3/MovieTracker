@@ -64,7 +64,24 @@ const details = asyncHandler(async(req: Request, res: Response, next: NextFuncti
   
 })
 
+const fetch_image = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    console.log(req.body)
+    if(req.body.info.media_type == "tv"){
+      const response = await moviedb.tvImages({id:req.body.info.id})
+      res.status(200).json(response)
+     }else{
+       const response = await moviedb.movieImages({id:req.body.info.id})
+      res.status(200).json(response)
+     }
+      
+    } catch (e) {
+      console.log(e)
+    }
+})
+
   export{
     search_movie,
-    details
+    details,
+    fetch_image
   }

@@ -40,7 +40,7 @@ const Details = () => {
         return <Description state={detailedInfo} />
         break;
         case "Photos":
-        return <Photos/>
+        return <Photos state={info}/>
         break;
     
       default:
@@ -81,9 +81,7 @@ const Details = () => {
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">
-              <h1
-                className= "lemon text-[90px] tracking-wider whitespace-nowrap text-white"
-              >
+              <h1 className= "lemon text-[90px] tracking-wider whitespace-nowrap text-white">
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
               <ul className="flex gap-5">
@@ -112,11 +110,11 @@ const Details = () => {
           </div>
           <div className="col-span-full h-96 bg-white row-start-12">
             <ul className="grid grid-cols-5 justify-items-center h-16 items-center">
-              <li className="border-b border-acc" onClick={(e) => handlePageChange(e)}>Description</li>
-              <li onClick={(e) => handlePageChange(e)}> Photos</li>
-              <li onClick={(e) => handlePageChange(e)}> Videos</li>
-              <li onClick={(e) => handlePageChange(e)}> Ratings</li>
-              <li onClick={(e) => handlePageChange(e)}> Cast</li>
+              <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
+              <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
+              <li className={`${currentPage == "Videos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Videos</li>
+              <li className={`${currentPage == "Ratings" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Ratings</li>
+              <li className={`${currentPage == "Cast" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Cast</li>
             </ul>
             <div className="px-16 py-10">
              {showPage()}

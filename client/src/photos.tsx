@@ -1,10 +1,32 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 
+const Photos = (props:any) => {
 
-const Photos = () => {
+    const info = props.state
+    const [photo, setPhoto] = useState<any[]>([])
+
+    const fetchImages = async() => {
+        try{
+            const response = await axios.post(`${import.meta.env.VITE_API}/images`, {info})
+            setPhoto(response.data.backdrops)
+        }catch(e){
+            console.error(e)
+        }
+    }
+
+    useEffect(() => {
+        fetchImages()
+    },[props.info])
 
     return(
         <>
-        <p>photo</p>
+        {
+            photo &&
+            photo.map((item) => (
+                <img src={`https://image.tmdb.org/t/p/original${item.file_path}`} alt="" />
+            ))
+        }
         </>
     )
 }
