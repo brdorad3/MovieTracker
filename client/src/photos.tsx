@@ -21,12 +21,17 @@ const Photos = (props:any) => {
 
     return(
         <>
+        <div className="grid grid-cols-2 gap-5">
         {
+           
             photo &&
+            
             photo.map((item) => (
-                <img src={`https://image.tmdb.org/t/p/original${item.file_path}`} alt="" />
+                <img src={`https://image.tmdb.org/t/p/original${item.file_path}`} alt="" className="rounded-lg" key={item.id}/>
             ))
+            
         }
+        </div>
         </>
     )
 }

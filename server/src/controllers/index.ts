@@ -66,7 +66,6 @@ const details = asyncHandler(async(req: Request, res: Response, next: NextFuncti
 
 const fetch_image = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log(req.body)
     if(req.body.info.media_type == "tv"){
       const response = await moviedb.tvImages({id:req.body.info.id})
       res.status(200).json(response)
@@ -80,8 +79,42 @@ const fetch_image = asyncHandler(async(req: Request, res: Response, next: NextFu
     }
 })
 
+const fetch_similar = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    
+    if(req.body.info.media_type == "tv"){
+      const response = await moviedb.tvSimilar({id:req.body.info.id})
+      res.status(200).json(response)
+     }else{
+       const response = await moviedb.movieSimilar({id:req.body.info.id})
+      res.status(200).json(response)
+     }
+      
+    } catch (e) {
+      console.log(e)
+    }
+})
+
+const fetch_reviews = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+   
+    if(req.body.info.media_type == "tv"){
+      const response = await moviedb.tvReviews({id:req.body.info.id})
+      res.status(200).json(response)
+     }else{
+       const response = await moviedb.movieReviews({id:req.body.info.id})
+      res.status(200).json(response)
+     }
+      
+    } catch (e) {
+      console.log(e)
+    }
+})
+
   export{
     search_movie,
     details,
-    fetch_image
+    fetch_image,
+    fetch_similar,
+    fetch_reviews
   }

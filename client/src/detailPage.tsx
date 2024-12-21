@@ -5,6 +5,8 @@ import { PlayCircle } from "lucide-react";
 import { DateTime } from "luxon";
 import Description from "./description";
 import Photos from "./photos";
+import Similar from "./similar";
+import Reviews from "./reviews";
 
 
 const Details = () => {
@@ -42,6 +44,13 @@ const Details = () => {
         case "Photos":
         return <Photos state={info}/>
         break;
+        case "Similar":
+        return <Similar state={info}/>
+        break;
+        case "Reviews":
+        return <Reviews state={info}/>
+        break;
+       
     
       default:
         return <Description/>
@@ -112,8 +121,8 @@ const Details = () => {
             <ul className="grid grid-cols-5 justify-items-center h-16 items-center">
               <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
               <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
-              <li className={`${currentPage == "Videos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Videos</li>
-              <li className={`${currentPage == "Ratings" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Ratings</li>
+              <li className={`${currentPage == "Similar" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Similar</li>
+              <li className={`${currentPage == "Reviews" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Reviews</li>
               <li className={`${currentPage == "Cast" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Cast</li>
             </ul>
             <div className="px-16 py-10">

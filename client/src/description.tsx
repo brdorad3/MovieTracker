@@ -31,7 +31,7 @@ const Description = (props: any) => {
                     
                <div className="flex gap-2 border-b pb-3 pt-2">
                 <p className="font-bold">Runtime </p>
-                    <p>{info.runtime}</p>
+                    <p>{info.runtime} min</p>
                </div>
                     }
                     {info.number_of_episodes &&
