@@ -7,6 +7,7 @@ import Description from "./description";
 import Photos from "./photos";
 import Similar from "./similar";
 import Reviews from "./reviews";
+import Cast from "./cast";
 
 
 const Details = () => {
@@ -50,7 +51,9 @@ const Details = () => {
         case "Reviews":
         return <Reviews state={info}/>
         break;
-       
+        case "Cast":
+          return <Cast state={info}/>
+          break;
     
       default:
         return <Description/>

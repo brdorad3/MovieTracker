@@ -110,11 +110,43 @@ const fetch_reviews = asyncHandler(async(req: Request, res: Response, next: Next
       console.log(e)
     }
 })
+const fetch_cast = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+   
+    if(req.body.info.media_type == "tv"){
+      const response = await moviedb.tvCredits({id:req.body.info.id})
+      res.status(200).json(response)
+     }else{
+       const response = await moviedb.movieCredits({id:req.body.info.id})
+      res.status(200).json(response)
+     }
+      
+    } catch (e) {
+      console.log(e)
+    }
+})
+const fetch_search = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    if(req.body.type == "movie"){
+      const response = await moviedb.searchMovie({query:req.body.info})
+      res.status(200).json(response)
+    }else{
+      const response = await moviedb.searchTv({query:req.body.info})
+      res.status(200).json(response)
+    }
+
+     
+    } catch (e) {
+      console.log(e)
+    }
+})
 
   export{
     search_movie,
     details,
     fetch_image,
     fetch_similar,
-    fetch_reviews
+    fetch_reviews,
+    fetch_cast,
+    fetch_search
   }

@@ -78,3 +78,7 @@
 .shad{
   box-shadow: 1px 1px 5px black;
 }
+input:focus{
+  border: none;
+  outline: none;
+}
