@@ -1,6 +1,5 @@
 import { Search, SunMoon } from "lucide-react"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 
@@ -14,27 +13,11 @@ import { Link } from "react-router-dom"
     const handleInput = (e: any) => {
         setinfo(e.target.value)
     }
-    /*
-    const fetchSearch = async() => {
-        try{
-            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info})
-            console.log(response.data)
-        }catch(e){
-            console.error(e)
-        }
-    }
-   
-        useEffect(() => {
-            fetchSearch()
-        },[info])*/
-    
-            
-       
 
     return(
         <>
         <nav className="h-[8%] w-full bg-first  grid grid-cols-custom justify-center gap-x-[20px] items-center relative">
-            <h1 className="text-3xl text-acc ">Robnite</h1>
+            <Link to="/"><h1 className="text-3xl text-acc ">Robnite</h1></Link>
             <p className="col-start-3 text-sec ">MOVIES</p>
             <p className="col-start-4 text-sec">TV SHOWS</p>
             <p className="col-start-5 text-sec">NEWS</p>
@@ -44,10 +27,10 @@ import { Link } from "react-router-dom"
                 <Search className="absolute top-2 left-14 text-black" size={25}></Search>
                 {
                     info && info.length > 2 &&
-                    <div className="h-20 w-full bg-white flex flex-col">
-                    <Link to="/search" className=" border-gray-200 px-24" state={{info: info, type: "movie"}}>Search {info} in movies</Link>
+                    <div className=" w-full bg-white flex flex-col">
+                    <Link to="/search" className=" border-gray-200 px-24" state={{info: info, media_type: "movie"}}>Search <strong>{info}</strong> in movies</Link>
                     <div className="h-[1px] w-full bg-gray-200"></div>
-                    <Link to="/search" className="border-gray-200 px-24" state={{info: info, type: "tv"}}>Search {info} in tv shows</Link>
+                    <Link to="/search" className="border-gray-200 px-24" state={{info: info, media_type: "tv"}}>Search <strong>{info}</strong> in tv shows</Link>
                     <div className="h-[1px] w-full bg-gray-200"></div>
                 </div>
                 }

@@ -49,7 +49,8 @@ const search_movie = asyncHandler(async(req: Request, res: Response, next: NextF
 })
 const details = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    if(req.body.item.media_type == "tv"){
+    
+    if(req.body.item.media_type == "tv" || req.body.item.first_air_date){
      const response = await moviedb.tvInfo({id:req.body.item.id})
      res.status(200).json(response)
     }else{
@@ -66,7 +67,7 @@ const details = asyncHandler(async(req: Request, res: Response, next: NextFuncti
 
 const fetch_image = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    if(req.body.info.media_type == "tv"){
+    if(req.body.info.media_type == "tv" || req.body.info.first_air_date){
       const response = await moviedb.tvImages({id:req.body.info.id})
       res.status(200).json(response)
      }else{
@@ -82,7 +83,7 @@ const fetch_image = asyncHandler(async(req: Request, res: Response, next: NextFu
 const fetch_similar = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
     
-    if(req.body.info.media_type == "tv"){
+    if(req.body.info.media_type == "tv" || req.body.info.first_air_date){
       const response = await moviedb.tvSimilar({id:req.body.info.id})
       res.status(200).json(response)
      }else{
@@ -98,7 +99,7 @@ const fetch_similar = asyncHandler(async(req: Request, res: Response, next: Next
 const fetch_reviews = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
    
-    if(req.body.info.media_type == "tv"){
+    if(req.body.info.media_type == "tv" || req.body.info.first_air_date){
       const response = await moviedb.tvReviews({id:req.body.info.id})
       res.status(200).json(response)
      }else{
@@ -113,7 +114,7 @@ const fetch_reviews = asyncHandler(async(req: Request, res: Response, next: Next
 const fetch_cast = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
    
-    if(req.body.info.media_type == "tv"){
+    if(req.body.info.media_type == "tv" || req.body.info.first_air_date){
       const response = await moviedb.tvCredits({id:req.body.info.id})
       res.status(200).json(response)
      }else{
@@ -127,7 +128,7 @@ const fetch_cast = asyncHandler(async(req: Request, res: Response, next: NextFun
 })
 const fetch_search = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    if(req.body.type == "movie"){
+    if(req.body.media_type == "movie"){
       const response = await moviedb.searchMovie({query:req.body.info})
       res.status(200).json(response)
     }else{

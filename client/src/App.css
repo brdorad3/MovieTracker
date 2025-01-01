@@ -79,6 +79,9 @@
   box-shadow: 1px 1px 5px black;
 }
 input:focus{
-  border: none;
+  border-bottom: 1px solid #e5e7eb;
   outline: none;
+}
+.cus{
+  opacity: 1!important;
 }

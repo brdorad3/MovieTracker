@@ -26,7 +26,7 @@ const Similar = (props:any) => {
         <div className="grid grid-cols-5 gap-2">
         {similar &&
         similar.map((item: any) => (
-                <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="" className="rounded-md" />
+                <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="" className="rounded-md" key={item.id} />
         ))
         }
         </div>

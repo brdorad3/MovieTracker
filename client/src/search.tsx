@@ -7,11 +7,11 @@ import { Link } from "react-router-dom"
 
 const Search = () => {
 const location = useLocation()
-const {info, type} = location.state
+const {info, media_type} = location.state
 const [res, setRes] = useState<any[]>([])
     const fetchSearch = async() => {
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info, type})
+            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info, media_type})
             console.log(response.data.results)
             setRes(response.data.results)
         }catch(e){
@@ -29,7 +29,9 @@ const [res, setRes] = useState<any[]>([])
             <Navbar></Navbar>
             <div  className="grid grid-cols-custom justify-center gap-x-[20px] py-14">
                 <div className="row-start-1 col-start-1">
-                    filters
+                    <h2 className="border-b border-black mb-2">Filters</h2>
+                    <p>Movies</p>
+                    <p>TV Shows</p>
                 </div>
                 <div className="flex flex-col gap-10 col-start-3 col-span-6">
                     <p className="whitespace-nowrap">Showing results for "{info}"</p>
@@ -50,7 +52,7 @@ const [res, setRes] = useState<any[]>([])
     </div>
 )}
                 <div className="flex gap-2">
-                    <p className="whitespace-nowrap">{item.title || item.name}</p>
+                    <Link to={`/${item.id}`} state={item} className="self-start"><p className="whitespace-nowrap">{item.title || item.name}</p></Link>
                     <p className="whitespace-nowrap">{DateTime.fromISO(item.release_date || item.first_air_date).toFormat('yyyy')}</p>
                 </div>
                 </div>

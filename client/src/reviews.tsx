@@ -26,7 +26,7 @@ const Reviews = (props:any) => {
             <div className="flex flex-col gap-5">
                 {review &&
                 review.map((item: any) => (
-                    <div className="p-4 shad rounded-md flex flex-col gap-5">
+                    <div className="p-4 shad rounded-md flex flex-col gap-5" key={item.id}>
                         <div className="flex items-center gap-3">
                         <div className="bg-black w-12 h-12 rounded-full"></div>
                         <div>

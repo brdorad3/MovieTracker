@@ -26,7 +26,7 @@ const Cast = (props: any) => {
         <div className="grid grid-cols-2 gap-y-10 ">
             {review &&
             review.map((item:any) => (
-                <div className="flex gap-5 items-center">
+                <div className="flex gap-5 items-center" key={item.id}>
                     <img src={`https://image.tmdb.org/t/p/original${item.profile_path}`} alt="" className="w-28 h-28 rounded-full"/>
                     <div className="flex flex-col gap-2">
                         <h2 className="lemon text-sm">{item.name}</h2>

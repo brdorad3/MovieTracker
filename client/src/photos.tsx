@@ -9,6 +9,7 @@ const Photos = (props:any) => {
     const fetchImages = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/images`, {info})
+            console.log(response.data)
             setPhoto(response.data.backdrops)
         }catch(e){
             console.error(e)

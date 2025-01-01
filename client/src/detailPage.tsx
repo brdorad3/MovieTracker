@@ -16,7 +16,7 @@ const Details = () => {
   const [detailedInfo, setDetailedInfo] = useState<any>();
   const [currentPage, setCurrentPage] = useState("Description");
 
-
+console.log(info)
 
   const handleClick = async (item: any) => {
     try {
@@ -74,13 +74,12 @@ const Details = () => {
 
   let sm = dt.toLocaleString(DateTime.DATE_MED);
 
- detailedInfo && console.log(detailedInfo)
   
   return (
     <>
       {detailedInfo && (
         <div
-          className="w-full h-full relative bg-cover grid grid-cols-custom grid-rows-12 justify-center"
+          className="w-full h-full relative bg-cover grid grid-cols-custom grid-rows-12 justify-center opacity-95"
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
             
@@ -93,7 +92,7 @@ const Details = () => {
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">
-              <h1 className= "lemon text-[90px] tracking-wider whitespace-nowrap text-white">
+              <h1 className= "lemon text-[90px] tracking-wider whitespace-nowrap text-white cus">
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
               <ul className="flex gap-5">
