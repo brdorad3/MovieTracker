@@ -5,6 +5,7 @@ import App from './App.tsx'
 import "./App.css"
 import Details from './detailPage.tsx';
 import Search from './search.tsx';
+import PopMovies from './popmovies.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+  },
+  {
+    path: "/popmovies",
+    element: <PopMovies />,
   },
 ]);
 

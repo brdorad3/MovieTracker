@@ -24,7 +24,7 @@ import { Link } from "react-router-dom"
             <p className=" text-sec " onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
             {movie &&
                 <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >
-                    <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li>
+                    <Link to="/popmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
                     <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
                     <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li>
                 </ul>
