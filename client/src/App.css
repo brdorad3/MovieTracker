@@ -44,6 +44,15 @@
     url("./fonts/LEMONMILK-Medium.otf") format("opentype");
   
 }
+@font-face {
+  font-family: "HaraBara";
+  src: local("Harabara Mais Demo.otf"),
+    url("./fonts/Harabara Mais Demo.otf") format("opentype");
+  
+}
+.harabara{
+  font-family: "Harabara";
+}
 .lemon{
   font-family: "Lemon";
 }
