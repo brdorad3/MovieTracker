@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import { DateTime } from "luxon"
 import { Link } from "react-router-dom"
 
-const PopMovies = () => {
+const TopMovies = () => {
     const [info, setInfo] = useState<any[]>([])
 
     const fetchMovies = async() => {
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API}/trending_movies`);
+            const response = await axios.get(`${import.meta.env.VITE_API}/toprated_movies`);
             console.log(response.data)
             setInfo(response.data)
         }catch(e){
@@ -27,7 +27,7 @@ const PopMovies = () => {
         <Navbar/>
         <div className="px-[313px] py-5">
             <div className="w-full border-b border-black flex justify-between">
-            <h1>Popular movies</h1>
+            <h1>Top rated movies</h1>
             <div className="flex gap-5">
                 <h2>Year</h2>
                 <h2>Genre</h2>
@@ -52,4 +52,4 @@ const PopMovies = () => {
         </>
     )
 }
-export default PopMovies
+export default TopMovies

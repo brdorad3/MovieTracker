@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
  const Navbar  = () => {
     const [search, setSearch] = useState(false)
     const [movie, setMovie] = useState(false)
+    const [tv, setTv] = useState(false)
     const [info, setinfo] = useState("")
 
     const handleClick = () => {
@@ -26,11 +27,20 @@ import { Link } from "react-router-dom"
                 <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >
                     <Link to="/popmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
                     <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
+                   <Link to="/topmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li></Link>
+                </ul>
+            }
+            </div>
+            <div className="col-start-3 relative">
+            <p className="text-sec whitespace-nowrap" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)}>TV SHOWS</p>
+            {tv &&
+                <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)} >
+                    <Link to="/poptv"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
+                    <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
                     <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li>
                 </ul>
             }
             </div>
-            <p className="text-sec whitespace-nowrap">TV SHOWS</p>
             <p className="text-sec">NEWS</p>
             </div>
             {search &&

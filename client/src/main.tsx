@@ -6,6 +6,8 @@ import "./App.css"
 import Details from './detailPage.tsx';
 import Search from './search.tsx';
 import PopMovies from './popmovies.tsx';
+import PopTv from './poptv.tsx';
+import TopMovies from './topmovies.tsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/popmovies",
     element: <PopMovies />,
+  },
+  {
+    path: "/poptv",
+    element: <PopTv />,
+  },
+  {
+    path: "/topmovies",
+    element: <TopMovies />,
   },
 ]);
 

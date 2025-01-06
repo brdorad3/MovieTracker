@@ -163,6 +163,57 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
     }
   
 })
+const trending_tv = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    const allResults = []
+    for (let page = 1; page < 5; page++) {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.API_KEY}&language=en-US&page=${page}`
+      );
+      const data = await response.json();
+
+      if (data.results) {
+        allResults.push(...data.results);
+      }
+    }
+     
+    
+      res.status(200).json(allResults)
+      
+    } catch (e) {
+      console.log(e)
+    }
+  
+})
+
+const toprated_movies = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+   /* const allResults = []
+    
+      const response = await fetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=50`
+      ) */
+      const allResults = []
+      for (let page = 1; page < 5; page++) {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=500&page=${page}`
+        );
+        const data = await response.json();
+  
+        if (data.results) {
+          allResults.push(...data.results);
+        }
+      }
+       
+      
+        res.status(200).json(allResults)
+        
+    } catch (e) {
+      console.log(e)
+    }
+  
+})
+
 
   export{
     search_movie,
@@ -172,5 +223,7 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
     fetch_reviews,
     fetch_cast,
     fetch_search,
-    trending_movie
+    trending_movie,
+    trending_tv,
+    toprated_movies
   }
