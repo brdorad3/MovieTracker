@@ -128,7 +128,7 @@ const fetch_cast = asyncHandler(async(req: Request, res: Response, next: NextFun
 })
 const fetch_search = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    if(req.body.media_type == "movie"){
+    if(req.body.type == "movie"){
       const response = await moviedb.searchMovie({query:req.body.info})
       res.status(200).json(response)
     }else{

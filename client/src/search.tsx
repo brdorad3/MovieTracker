@@ -7,11 +7,12 @@ import { Link } from "react-router-dom"
 
 const Search = () => {
 const location = useLocation()
-const {info, media_type} = location.state
+const { info } = location.state
+const [type, setType] = useState(location.state.media_type)
 const [res, setRes] = useState<any[]>([])
     const fetchSearch = async() => {
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info, media_type})
+            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info, type})
             console.log(response.data.results)
             setRes(response.data.results)
         }catch(e){
@@ -22,7 +23,12 @@ const [res, setRes] = useState<any[]>([])
         useEffect(() => {
             fetchSearch()
             
-        },[])
+        },[type])
+
+        const handleClick = (arg: any) => {
+            console.log(arg)
+            setType(arg)
+        }
 
         return(
             <>
@@ -30,8 +36,8 @@ const [res, setRes] = useState<any[]>([])
             <div  className="grid grid-cols-custom justify-center gap-x-[20px] py-14">
                 <div className="row-start-1 col-start-1">
                     <h2 className="border-b border-black mb-2">Filters</h2>
-                    <p>Movies</p>
-                    <p>TV Shows</p>
+                    <p onClick={() => handleClick("movie")}>Movies</p>
+                    <p onClick={() => handleClick("tv")}>TV Shows</p>
                 </div>
                 <div className="flex flex-col gap-10 col-start-3 col-span-6">
                     <p className="whitespace-nowrap">Showing results for "{info}"</p>

@@ -22,7 +22,7 @@ import { Link } from "react-router-dom"
             <Link to="/"><h1 className="text-3xl text-acc ">Robnite</h1></Link>
             <div className="col-start-3 flex gap-12">
             <div className="col-start-3 relative">
-            <p className=" text-sec " onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
+            <p className=" text-sec cursor-pointer" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
             {movie &&
                 <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >
                     <Link to="/popmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
@@ -32,7 +32,7 @@ import { Link } from "react-router-dom"
             }
             </div>
             <div className="col-start-3 relative">
-            <p className="text-sec whitespace-nowrap" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)}>TV SHOWS</p>
+            <p className="text-sec whitespace-nowrap cursor-pointer" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)}>TV SHOWS</p>
             {tv &&
                 <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)} >
                     <Link to="/poptv"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
