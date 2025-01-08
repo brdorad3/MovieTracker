@@ -32,7 +32,7 @@ console.log(info)
 
   useEffect(() => {
     handleClick(info);
-  }, []);
+  }, [info]);
 
   const handlePageChange = (e: any) => {
     setCurrentPage(e.target.innerText);

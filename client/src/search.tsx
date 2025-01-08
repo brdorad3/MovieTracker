@@ -23,7 +23,7 @@ const [res, setRes] = useState<any[]>([])
         useEffect(() => {
             fetchSearch()
             
-        },[type])
+        },[type, info])
 
         const handleClick = (arg: any) => {
             console.log(arg)
