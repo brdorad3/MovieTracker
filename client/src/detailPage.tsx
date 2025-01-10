@@ -33,6 +33,9 @@ console.log(info)
   useEffect(() => {
     handleClick(info);
   }, [info]);
+  useEffect(() => {
+    window.scrollTo(0,0)
+  },[])
 
   const handlePageChange = (e: any) => {
     setCurrentPage(e.target.innerText);

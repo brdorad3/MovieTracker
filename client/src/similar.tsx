@@ -3,9 +3,10 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 const Similar = (props:any) => {
-
+    
     const info = props.state
     const [similar, setSimilar] = useState<any[]>([])
+    const [f, setFalse] = useState(false)
 
     const fetchSimilar = async() => {
         try{
@@ -18,16 +19,16 @@ const Similar = (props:any) => {
     }
     useEffect(() => {
         fetchSimilar()
-    },[props.info])
+    },[info])
 
-    
+   
 
     return(
         <>
         <div className="grid grid-cols-5 gap-2">
         {similar &&
         similar.map((item: any) => (
-            <Link to={`/${item.id}`} state={item}><img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="" className="rounded-md hover:scale-95" key={item.id} /></Link>
+            <Link to={`/${item.id}`} state={item} ><img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="" className="rounded-md hover:scale-95" key={item.id}/></Link>
         ))
         }
         </div>
