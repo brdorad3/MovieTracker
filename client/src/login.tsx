@@ -7,9 +7,6 @@ const Login = () => {
         <>
         <Navbar></Navbar>
          <header>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
       <SignedIn>
         <UserButton />
       </SignedIn>

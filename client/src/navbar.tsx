@@ -1,7 +1,7 @@
 import { Search, SunMoon } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { UserButton, UserProfile, SignedIn, SignedOut } from "@clerk/clerk-react"
+import { UserButton, UserProfile, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
 
 
  const Navbar  = () => {
@@ -42,7 +42,7 @@ import { UserButton, UserProfile, SignedIn, SignedOut } from "@clerk/clerk-react
                 </ul>
             }
             </div>
-            <Link to="/login"><p className="text-sec">NEWS</p></Link>
+            <SignInButton><p className="text-sec cursor-pointer">LOGIN</p></SignInButton>
             </div>
             {search &&
             <div className="absolute -bottom-10 z-50 w-full h-10">

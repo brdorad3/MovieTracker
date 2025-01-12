@@ -10,6 +10,7 @@ import PopTv from './poptv.tsx';
 import TopMovies from './topmovies.tsx';
 import { ClerkProvider } from '@clerk/clerk-react'
 import Login from './login.tsx';
+import { neobrutalism } from '@clerk/themes';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -51,7 +52,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/" appearance={
+       {
+       baseTheme: neobrutalism,
+       signIn: { baseTheme: neobrutalism },
+       }
+    }>
 
    <RouterProvider router={router} />
 

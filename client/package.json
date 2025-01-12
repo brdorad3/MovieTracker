@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.21.2",
+    "@clerk/themes": "^2.2.5",
     "axios": "^1.7.7",
     "colorthief": "^2.6.0",
     "dotenv": "^16.4.5",
