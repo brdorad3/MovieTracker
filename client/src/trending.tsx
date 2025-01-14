@@ -40,8 +40,7 @@ const Trending = () => {
       <Link to={`/${item.id}`} key={item.id}  state={item} onClick = {() => handleClick(item)}>
       <li
         key={item.id}
-        className="w-48 h-64 bg-black box-border rounded-lg hover:outline hover:outline-4 hover:outline-black hover:cursor-pointer "
-      >
+        className="w-48 h-64 bg-black box-border rounded-lg hover:outline hover:outline-4 hover:outline-black hover:cursor-pointer ">
         <img
           src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
           alt=""

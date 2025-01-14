@@ -4,7 +4,7 @@ import { search_movie, details, fetch_image, fetch_similar, fetch_reviews, fetch
 const router = Router()
 
 router.get("/api/trending", search_movie);
-router.get("/api/trending_movies", trending_movie);
+router.post("/api/trending_movies", trending_movie);
 router.get("/api/trending_tv", trending_tv);
 router.get("/api/toprated_movies", toprated_movies)
 router.post("/api/details", details);

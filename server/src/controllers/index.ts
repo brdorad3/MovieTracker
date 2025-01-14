@@ -144,9 +144,11 @@ const fetch_search = asyncHandler(async(req: Request, res: Response, next: NextF
 const trending_movie = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
     const allResults = []
+    
     for (let page = 1; page < 5; page++) {
+      
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}&language=en-US&page=${page}`
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}&language=en-US&year=2022&page=${page}`
       );
       const data = await response.json();
 
@@ -155,7 +157,7 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
       }
     }
      
-    
+    console.log(req.body)
       res.status(200).json(allResults)
       
     } catch (e) {
