@@ -146,18 +146,29 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
     const allResults = []
     
     for (let page = 1; page < 5; page++) {
-      
-      const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}&language=en-US&year=2022&page=${page}`
-      );
-      const data = await response.json();
-
-      if (data.results) {
-        allResults.push(...data.results);
+      if(req.body.yearFetch != 0){
+        console.log("disk")
+        const response = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${process.env.API_KEY}&primary_release_year=${req.body.yearFetch}&page=${page}`
+        );
+        const data = await response.json();
+        if (data.results) {
+          allResults.push(...data.results);
+        }
+      }else{
+        console.log("trend")
+        const response = await fetch(
+          `https://api.themoviedb.org/3/trending/movie/day?include_adult=false&api_key=${process.env.API_KEY}&language=en-US&page=${page}`
+        );
+        const data = await response.json();
+  
+        if (data.results) {
+          allResults.push(...data.results);
+        }
       }
-    }
+      }
      
-    console.log(req.body)
+   
       res.status(200).json(allResults)
       
     } catch (e) {
