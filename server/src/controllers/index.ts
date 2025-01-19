@@ -144,28 +144,52 @@ const fetch_search = asyncHandler(async(req: Request, res: Response, next: NextF
 const trending_movie = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
     const allResults = []
+    const yearFetch = req.body.yearFetch
+    const genreFetch = req.body.genreFetch
+    const handleGenre = (num: any) => {
+      if(num == "Action") return 28
+      else if(num == "Adventure") return 12
+      else if(num == "Animation") return 16
+      else if(num == "Comedy") return 35
+      else if(num == "Crime") return 80
+      else if(num == "Documentary") return 99
+      else if(num == "Drama") return 18
+      else if(num == "Family") return 10751
+      else if(num == "Fantasy") return 14
+      else if(num == "History") return 36
+      else if(num == "Horror") return 27
+      else if(num == "Music") return 10402
+      else if(num == "Mystery") return 9648
+      else if(num == "Romance") return 10749
+      else if(num == "Sci fi") return 878
+      else if(num == "Thriller") return 53
+      else if(num == "War") return 10752
+      else if(num == "Western") return 37
+      else if(num == "") return;
+      
+    }
     
     for (let page = 1; page < 5; page++) {
-      if(req.body.yearFetch != 0){
-        console.log("disk")
-        const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${process.env.API_KEY}&primary_release_year=${req.body.yearFetch}&page=${page}`
-        );
-        const data = await response.json();
-        if (data.results) {
-          allResults.push(...data.results);
-        }
-      }else{
-        console.log("trend")
-        const response = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/day?include_adult=false&api_key=${process.env.API_KEY}&language=en-US&page=${page}`
-        );
-        const data = await response.json();
-  
-        if (data.results) {
-          allResults.push(...data.results);
+      let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${process.env.API_KEY}&vote_count.gte=100&page=${page}`;
+
+      
+      if (yearFetch) {
+        url += `&primary_release_year=${yearFetch}`;
+      }
+
+      
+      if (genreFetch) {
+        const genreId = handleGenre(genreFetch);
+        if (genreId) {
+          url += `&with_genres=${genreId}`;
         }
       }
+      const response = await fetch(url);
+        const data = await response.json();
+        if (data.results) {
+          allResults.push(...data.results);
+        }
+      
       }
      
    

@@ -94,3 +94,9 @@ input:focus{
 .cus{
   opacity: 1!important;
 }
+.genre, .year > p{
+  font-size: 12px;
+}
+.year > div p{
+  font-size: 12px;
+}

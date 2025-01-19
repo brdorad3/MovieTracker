@@ -16,11 +16,12 @@ const PopMovies = () => {
     const [nines, setNines] = useState(false)
     const [eits, setEits] = useState(false)
     const [yearFetch, setYearFetch] = useState(0)
+    const [genreFetch, setGenreFetch] = useState("")
     
 
     const fetchMovies = async() => {
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API}/trending_movies`, {yearFetch});
+            const response = await axios.post(`${import.meta.env.VITE_API}/trending_movies`, {yearFetch, genreFetch});
             console.log(response.data)
             setInfo(response.data)
         }catch(e){
@@ -30,11 +31,15 @@ const PopMovies = () => {
 
     useEffect(() => {
         fetchMovies()
-    },[yearFetch])
+    },[yearFetch, genreFetch])
 
     const handleClick = (e:any) => {
-        console.log(e.target.innerText)
+       
         setYearFetch(e.target.innerText)
+    }
+    const handleGenreClick = (e:any) => {
+        console.log(e.target.innerText)
+        setGenreFetch(e.target.innerText)
     }
 
 
@@ -45,12 +50,12 @@ const PopMovies = () => {
             <div className="w-full border-b border-black flex justify-between">
             <h1>Popular movies</h1>
             <div className="flex gap-5">
-                <div className="relative">
+                <div className="relative year">
                     
                 <h2 className="flex items-center" onMouseOver={() => setYr(true)} onMouseOut={() => setYr(false)}>Year <ChevronDown  size={16}/></h2>
                 {yr &&
                 <div className="p-2 bg-white shad absolute top-0 rounded-lg z-10" onMouseOver={() => setYr(true)} onMouseOut={() => setYr(false)}>
-                    <div className="flex gap-10 items-center relative" onMouseOver={() => setTwens(true)} onMouseOut={() => setTwens(false)}>2020s <ChevronRight size={15} />
+                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setTwens(true)} onMouseOut={() => setTwens(false)}>2020s <ChevronRight size={15} />
                     {twens && 
                     <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setTwens(true)} onMouseOut={() => setTwens(false)}>
                         <p onClick={(e) => handleClick(e)}>2025</p>
@@ -63,7 +68,7 @@ const PopMovies = () => {
                     }
                     </div>
                     
-                    <div className="flex gap-10 items-center relative" onMouseOver={() => setTens(true)} onMouseOut={() => setTens(false)}>2010s <ChevronRight size={15}/>
+                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setTens(true)} onMouseOut={() => setTens(false)}>2010s <ChevronRight size={15}/>
                     
                     {tens && 
                     <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setTens(true)} onMouseOut={() => setTens(false)}>
@@ -83,7 +88,7 @@ const PopMovies = () => {
                     </div>
                    
                    
-                    <div className="flex gap-10 items-center relative" onMouseOver={() => setOos(true)} onMouseOut={() => setOos(false)}>2000s <ChevronRight size={15}
+                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setOos(true)} onMouseOut={() => setOos(false)}>2000s <ChevronRight size={15}
                     
                     />
                     {oos && 
@@ -103,7 +108,7 @@ const PopMovies = () => {
                     
                     </div>
                     
-                    <div className="flex gap-10 items-center relative" onMouseOver={() => setNines(true)} onMouseOut={() => setNines(false)}>1990s <ChevronRight size={15}/>
+                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setNines(true)} onMouseOut={() => setNines(false)}>1990s <ChevronRight size={15}/>
                     
                     {nines && 
                     <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setNines(true)} onMouseOut={() => setNines(false)}>
@@ -122,7 +127,7 @@ const PopMovies = () => {
                     
                     
                     </div>
-                    <div className="flex gap-10 items-center relative" onMouseOver={() => setEits(true)} onMouseOut={() => setEits(false)}>1980s <ChevronRight size={15}/>
+                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setEits(true)} onMouseOut={() => setEits(false)}>1980s <ChevronRight size={15}/>
                     
                     {eits && 
                     <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setEits(true)} onMouseOut={() => setEits(false)}>
@@ -146,7 +151,27 @@ const PopMovies = () => {
                 <div className="relative">
                 <h2 className="flex items-center" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>Genre <ChevronDown  size={16}/></h2>
                 {gr &&
-                <div className="w-20 h-20 bg-black absolute top-0" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}></div>
+                <div className="absolute top-0 left-0 bg-white shad genre" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>
+                    <h3 className="border-b border-black">Genre</h3>
+                    <p onClick={(e) => handleGenreClick(e)}>Action</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Adventure</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Animation</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Comedy</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Crime</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Documentary</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Drama</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Family</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Fantasy</p>
+                    <p onClick={(e) => handleGenreClick(e)}>History</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Horror</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Music</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Mystery</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Romance</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Sci fi</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Thriller</p>
+                    <p onClick={(e) => handleGenreClick(e)}>War</p>
+                    <p onClick={(e) => handleGenreClick(e)}>Western</p>
+                </div>
                 }
                 </div>
                 <div className="relative">
