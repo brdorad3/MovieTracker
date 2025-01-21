@@ -17,11 +17,12 @@ const PopMovies = () => {
     const [eits, setEits] = useState(false)
     const [yearFetch, setYearFetch] = useState(0)
     const [genreFetch, setGenreFetch] = useState("")
+    const [sortFetch, setSortFetch] = useState("Popularity")
     
 
     const fetchMovies = async() => {
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API}/trending_movies`, {yearFetch, genreFetch});
+            const response = await axios.post(`${import.meta.env.VITE_API}/trending_movies`, {yearFetch, genreFetch, sortFetch});
             console.log(response.data)
             setInfo(response.data)
         }catch(e){
@@ -31,15 +32,19 @@ const PopMovies = () => {
 
     useEffect(() => {
         fetchMovies()
-    },[yearFetch, genreFetch])
+    },[yearFetch, genreFetch, sortFetch])
 
     const handleClick = (e:any) => {
        
         setYearFetch(e.target.innerText)
     }
     const handleGenreClick = (e:any) => {
-        console.log(e.target.innerText)
+        
         setGenreFetch(e.target.innerText)
+    }
+    const handleSortClick = (e:any) => {
+        
+        setSortFetch(e.target.innerText)
     }
 
 
@@ -177,7 +182,16 @@ const PopMovies = () => {
                 <div className="relative">
                 <h2 className="flex items-center" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>Sort by <ChevronDown  size={16}/></h2>
                 {sr &&
-                <div className="w-20 h-20 bg-black absolute top-0" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}></div>
+                <div className="p-2 absolute top-0 bg-white shad rounded-sm" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Popularity</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Rating</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Rating count</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Title desc</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Title asc</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Revenue</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Date desc</p>
+                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Date asc</p>
+                </div>
                 }
                 </div>
             </div>

@@ -96,7 +96,11 @@ input:focus{
 }
 .genre, .year > p{
   font-size: 12px;
+  cursor: pointer;
+  
 }
+
 .year > div p{
+  cursor: pointer;
   font-size: 12px;
 }

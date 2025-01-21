@@ -146,6 +146,7 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
     const allResults = []
     const yearFetch = req.body.yearFetch
     const genreFetch = req.body.genreFetch
+    const sortFetch = req.body.sortFetch
     const handleGenre = (num: any) => {
       if(num == "Action") return 28
       else if(num == "Adventure") return 12
@@ -168,6 +169,18 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
       else if(num == "") return;
       
     }
+    const handleSort = (sort: any) => {
+      if(sort == "Popularity") return "popularity.desc"
+      else if(sort == "Rating") return "vote_average.desc"
+      else if(sort == "Rating") return "vote_average.desc"
+      else if(sort == "Rating count") return "vote_count.desc"
+      else if(sort == "Title asc") return "title.asc"
+      else if(sort == "Title desc") return "title.desc"
+      else if(sort == "Revenue") return "revenue.desc"
+      else if(sort == "Date desc") return "primary_release_date.desc"
+      else if(sort == "Date asc") return "primary_release_date.asc"
+      
+    }
     
     for (let page = 1; page < 5; page++) {
       let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${process.env.API_KEY}&vote_count.gte=100&page=${page}`;
@@ -175,6 +188,9 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
       
       if (yearFetch) {
         url += `&primary_release_year=${yearFetch}`;
+      }
+      if(sortFetch){
+        url += `&sort_by=${handleSort(sortFetch)}`
       }
 
       
