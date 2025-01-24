@@ -39,17 +39,18 @@ const [res, setRes] = useState<any[]>([])
                     <p onClick={() => handleClick("movie")}>Movies</p>
                     <p onClick={() => handleClick("tv")}>TV Shows</p>
                 </div>
-                <div className="flex flex-col gap-10 col-start-3 col-span-6">
+                <div className="flex flex-col  col-start-3 col-span-6">
                     <p className="whitespace-nowrap">Showing results for "{info}"</p>
             {res &&
             res.map((item: any) => (
-                <div className="flex gap-5 col-span-2" key={item.id}>
+                <div className="flex flex-col">
+                <div className="flex gap-5 col-span-2 py-7" key={item.id}>
                 {item.poster_path ? (
    
    <Link to={`/${item.id}`} state={item}><img 
         src={`https://image.tmdb.org/t/p/original${item.poster_path}`} 
         alt={`${item.title} poster`} 
-        className="w-24 h-32 " 
+        className="w-24 h-32 rounded-md  shad" 
     />
     </Link>
 ) : (
@@ -61,9 +62,14 @@ const [res, setRes] = useState<any[]>([])
                     <Link to={`/${item.id}`} state={item} className="self-start"><p className="whitespace-nowrap">{item.title || item.name}</p></Link>
                     <p className="whitespace-nowrap">{DateTime.fromISO(item.release_date || item.first_air_date).toFormat('yyyy')}</p>
                 </div>
+                
                 </div>
+                <div className="w-full h-[1px] bg-black "></div>
+                </div>
+                
             ))
             }
+            
             </div>
             </div>
             </>

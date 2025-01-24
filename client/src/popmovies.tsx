@@ -46,7 +46,22 @@ const PopMovies = () => {
         
         setSortFetch(e.target.innerText)
     }
-
+    const handleBgColor = (item: any) => {
+        if(item > 6 && item < 7){
+            return "yellow"
+        }else if(item > 7 && item < 8){
+            return "orange"
+        }
+        else if(item > 8 && item < 9){
+            return "lime"
+        }
+        else if(item > 9 && item < 10){
+            return "green"
+        }
+        else if(item < 6){
+            return "red"
+        }
+    }
 
     return(
         <>
@@ -196,15 +211,19 @@ const PopMovies = () => {
                 </div>
             </div>
             </div>
-            <div className="flex flex-col gap-5 py-5">
+            <div className="grid grid-cols-5 gap-y-20 py-10">
                 {info &&
                 info.map((item: any, index) => (
-                    <div key={index} className="flex gap-3">
-                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-20 h-28 rounded-md" /></Link>
+                    <div key={index} className="flex flex-col relative">
+                        <div className="absolute -top-3 left-[75px] w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
+                        style={{backgroundColor: handleBgColor(item.vote_average)}}
+                        >
+                            <p>{item.vote_average.toFixed(1)}</p>
+                        </div>
+                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-48 h-64 rounded-sm" /></Link>
                         <div>
-                            <Link to={`/:${item.id}`} state={item} ><p className="b font-bold text-lg">{index + 1}. {item.title}</p></Link>
-                            <p>{DateTime.fromISO(item.release_date).year}</p>
-                            <p>{item.vote_average.toFixed(1)}/10  &#40;{item.vote_count}&#41;</p>
+                            <Link to={`/:${item.id}`} state={item} ><p className="b font-bold text-lg">{item.title}</p></Link>
+                           
                         </div>
                         
                     </div>
