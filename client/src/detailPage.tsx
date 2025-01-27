@@ -67,6 +67,17 @@ console.log(info)
     showPage()
   },[currentPage])
 
+  const handleTitleSize = (title: any) => {
+    if(title.length > 30){
+      return "45px"
+    }else if(title.length >20){
+      return "80px"
+    }
+    else{
+      return "90px"
+    }
+  }
+
 
   let dt;
   detailedInfo
@@ -95,7 +106,8 @@ console.log(info)
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">
-              <h1 className= "lemon text-[90px] tracking-wider whitespace-nowrap text-white cus">
+              <h1 className= "lemon  tracking-wider whitespace-nowrap text-white cus"
+              style={{fontSize:handleTitleSize(detailedInfo.title || detailedInfo.name)}}>
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
               <ul className="flex gap-5">

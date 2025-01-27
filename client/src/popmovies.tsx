@@ -1,9 +1,8 @@
 import Navbar from "./navbar"
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { DateTime } from "luxon"
 import { Link } from "react-router-dom"
-import { ChevronDown, ChevronRight, Divide } from "lucide-react"
+import { ChevronDown, ChevronRight } from "lucide-react"
 
 const PopMovies = () => {
     const [info, setInfo] = useState<any[]>([])
@@ -171,7 +170,7 @@ const PopMovies = () => {
                 <div className="relative">
                 <h2 className="flex items-center" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>Genre <ChevronDown  size={16}/></h2>
                 {gr &&
-                <div className="absolute top-0 left-0 bg-white shad genre" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>
+                <div className="absolute top-0 left-0 bg-white shad genre z-10" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>
                     <h3 className="border-b border-black">Genre</h3>
                     <p onClick={(e) => handleGenreClick(e)}>Action</p>
                     <p onClick={(e) => handleGenreClick(e)}>Adventure</p>
@@ -197,7 +196,7 @@ const PopMovies = () => {
                 <div className="relative">
                 <h2 className="flex items-center" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>Sort by <ChevronDown  size={16}/></h2>
                 {sr &&
-                <div className="p-2 absolute top-0 bg-white shad rounded-sm" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>
+                <div className="p-2 absolute top-0 bg-white shad rounded-sm z-10" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>
                 <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Popularity</p>
                 <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Rating</p>
                 <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Rating count</p>
@@ -211,7 +210,7 @@ const PopMovies = () => {
                 </div>
             </div>
             </div>
-            <div className="grid grid-cols-5 gap-y-20 py-10">
+            <div className="grid grid-cols-5 gap-x-20 gap-y-20 py-10">
                 {info &&
                 info.map((item: any, index) => (
                     <div key={index} className="flex flex-col relative">
@@ -222,7 +221,7 @@ const PopMovies = () => {
                         </div>
                         <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-48 h-64 rounded-sm" /></Link>
                         <div>
-                            <Link to={`/:${item.id}`} state={item} ><p className="b font-bold text-lg">{item.title}</p></Link>
+                            <Link to={`/:${item.id}`} state={item} ><p className="b  text-lg">{item.title}</p></Link>
                            
                         </div>
                         

@@ -5,7 +5,7 @@ const router = Router()
 
 router.get("/api/trending", search_movie);
 router.post("/api/trending_movies", trending_movie);
-router.get("/api/trending_tv", trending_tv);
+router.post("/api/trending_tv", trending_tv);
 router.get("/api/toprated_movies", toprated_movies)
 router.post("/api/details", details);
 router.post("/api/images", fetch_image);
