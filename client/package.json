@@ -12,19 +12,25 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.21.2",
     "@clerk/themes": "^2.2.5",
+    "@radix-ui/react-select": "^2.1.5",
     "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "colorthief": "^2.6.0",
     "dotenv": "^16.4.5",
     "lucide-react": "^0.456.0",
     "luxon": "^3.5.0",
-    "node-vibrant": "^3.2.1-alpha.1",
+    "node-vibrant": "^4.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@types/luxon": "^3.4.2",
+    "@types/node": "^22.12.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react-swc": "^3.5.0",

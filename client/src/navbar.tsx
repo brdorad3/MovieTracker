@@ -1,7 +1,7 @@
 import { Search, SunMoon } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { UserButton, UserProfile, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
+import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
 
 
  const Navbar  = () => {

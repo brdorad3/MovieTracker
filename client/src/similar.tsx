@@ -6,7 +6,7 @@ const Similar = (props:any) => {
     
     const info = props.state
     const [similar, setSimilar] = useState<any[]>([])
-    const [f, setFalse] = useState(false)
+    
 
     const fetchSimilar = async() => {
         try{

@@ -70,8 +70,11 @@ console.log(info)
   const handleTitleSize = (title: any) => {
     if(title.length > 30){
       return "45px"
-    }else if(title.length >20){
+    }else if(title.length >=20 && title.length <= 25){
       return "80px"
+    }
+    else if(title.length >25){
+      return "70px"
     }
     else{
       return "90px"
