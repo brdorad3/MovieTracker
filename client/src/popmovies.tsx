@@ -2,7 +2,7 @@ import Navbar from "./navbar"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { ChevronDown, Search } from "lucide-react"
+import { Search } from "lucide-react"
 import {
     Select,
     SelectContent,
@@ -17,7 +17,6 @@ import {
 
 const PopMovies = () => {
     const [info, setInfo] = useState<any[]>([])
-    const [sr, setSr] = useState(false)
     const [year, setYear] = useState()
     const [yearFetch, setYearFetch] = useState()
     const [genreFetch, setGenreFetch] = useState("")
@@ -45,24 +44,21 @@ const PopMovies = () => {
     const handleYearChange = (e:any) => {
          setYear(e.target.value)
      }
-    const handleSortClick = (e:any) => {
-        
-        setSortFetch(e.target.innerText)
-    }
+    
     const handleBgColor = (item: any) => {
         if(item > 6 && item < 7){
-            return "yellow"
-        }else if(item > 7 && item < 8){
-            return "orange"
+            return "#f39c12"
+        }else if(item >= 7 && item < 8){
+            return "#f4d03f"
         }
-        else if(item > 8 && item < 9){
-            return "lime"
+        else if(item >= 8 && item < 9){
+            return "#28b463"
         }
-        else if(item > 9 && item < 10){
-            return "green"
+        else if(item >= 9 && item < 10){
+            return "#186a3b"
         }
         else if(item < 6){
-            return "red"
+            return "#e74c3c"
         }
     }
 
@@ -70,11 +66,11 @@ const PopMovies = () => {
         <>
         <Navbar/>
         <div className="px-[313px] py-5">
-            <div className="w-full flex justify-between ">
+            <div className="w-full flex justify-between items-end border-b border-black pb-2Ö">
             <h1>Popular movies</h1>
-            <div className="flex gap-5">
-                <div className="relative">
-                <form onSubmit={(e) => handleClick(e)}>
+            <div className="flex gap-5 items-center">
+                <div className="relative flex items-center">
+                <form onSubmit={(e) => handleClick(e)} className="flex items-center">
                 <Input value={year} placeholder="Year" onChange={handleYearChange} />
                 <button type="submit"> <Search type="submit" className="absolute right-2 top-[6px] text-gray-400 w-4 z-50"  /></button>
                

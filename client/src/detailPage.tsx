@@ -103,13 +103,13 @@ console.log(info)
           }}
         >
           <div className="flex justify-center gap-20 row-start-2 text-white col-start-6">
-            <h2>MOVIES</h2>
-            <h2 className="whitespace-nowrap">TV SHOWS</h2>
-            <h2>NEWS</h2>
+            <h2 className="ts2">MOVIES</h2>
+            <h2 className="whitespace-nowrap ts2">TV SHOWS</h2>
+            <h2 className="ts2">NEWS</h2>
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">
-              <h1 className= "lemon  tracking-wider whitespace-nowrap text-white cus"
+              <h1 className= "lemon  tracking-wider whitespace-nowrap text-white ts cus"
               style={{fontSize:handleTitleSize(detailedInfo.title || detailedInfo.name)}}>
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
@@ -117,7 +117,7 @@ console.log(info)
                 {detailedInfo.genres &&
                   detailedInfo.genres.map((item: any) => (
                     <li
-                      className="whitespace-nowrap b  text-white" 
+                      className="whitespace-nowrap b ts2 text-white" 
                       key={item.id}
                      
                     >
@@ -133,7 +133,7 @@ console.log(info)
             </button>
           </div>
           <div className="row-start-11">
-            <p className="text-acc whitespace-nowrap b text-xl font-bold tracking-widest">
+            <p className="text-acc whitespace-nowrap b text-xl font-bold tracking-widest ts2">
               {sm}
             </p>
           </div>

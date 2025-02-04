@@ -257,7 +257,7 @@ const trending_tv = asyncHandler(async(req: Request, res: Response, next: NextFu
       
     }
     for (let page = 1; page < 5; page++) {
-      let url = `https://api.themoviedb.org/3/discover/tv?include_adult=false&api_key=${process.env.API_KEY}&vote_count.gte=70&language=en-US&page=${page}`
+      let url = `https://api.themoviedb.org/3/discover/tv?include_adult=false&api_key=${process.env.API_KEY}&vote_count.gte=150&language=en-US&page=${page}`
       
       if (yearFetch) {
         url += `&first_air_date_year=${yearFetch}`;
