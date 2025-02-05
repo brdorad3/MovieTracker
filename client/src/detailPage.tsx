@@ -96,20 +96,20 @@ console.log(info)
     <>
       {detailedInfo && (
         <div
-          className="w-full h-full relative bg-cover grid grid-cols-custom grid-rows-12 justify-center opacity-95"
+          className="w-full h-full relative bg-cover grid grid-cols-custom grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30"
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
-            
+           
           }}
         >
           <div className="flex justify-center gap-20 row-start-2 text-white col-start-6">
-            <h2 className="ts2">MOVIES</h2>
-            <h2 className="whitespace-nowrap ts2">TV SHOWS</h2>
-            <h2 className="ts2">NEWS</h2>
+            <h2 className="ts2 z-50">MOVIES</h2>
+            <h2 className="whitespace-nowrap ts2 z-50">TV SHOWS</h2>
+            <h2 className="ts2 z-50">NEWS</h2>
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">
-              <h1 className= "lemon  tracking-wider whitespace-nowrap text-white ts cus"
+              <h1 className= "lemon  tracking-wider whitespace-nowrap text-white ts2 cus"
               style={{fontSize:handleTitleSize(detailedInfo.title || detailedInfo.name)}}>
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
@@ -133,11 +133,11 @@ console.log(info)
             </button>
           </div>
           <div className="row-start-11">
-            <p className="text-acc whitespace-nowrap b text-xl font-bold tracking-widest ts2">
+            <p className="text-acc whitespace-nowrap b text-xl font-bold tracking-widest ts2 z-50">
               {sm}
             </p>
           </div>
-          <div className="col-span-full h-96 bg-white row-start-12">
+          <div className="col-span-full h-96 bg-white row-start-12 z-50">
             <ul className="grid grid-cols-5 justify-items-center h-16 items-center">
               <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
               <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
