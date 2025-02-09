@@ -19,7 +19,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
 
     return(
         <>
-        <nav className="h-[8%] w-full bg-first  grid grid-cols-custom justify-center gap-x-[20px] items-center relative">
+        <nav className="h-[8%] w-full bg-[#0D0F12]  grid grid-cols-custom justify-center gap-x-[20px] items-center relative">
             <Link to="/"><h1 className="text-3xl text-acc ">Robnite</h1></Link>
             <div className="col-start-3 flex gap-12">
             <div className="col-start-3 relative">

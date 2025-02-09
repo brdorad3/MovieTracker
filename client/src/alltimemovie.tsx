@@ -1,18 +1,17 @@
-import "dotenv"
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Trending = () => {
+const AllTimeMovie = () => {
 
-  const [info, setInfo] = useState<any[]>([])
+    const [info, setInfo] = useState<any[]>([])
   
 
     const fetchPopular = async () => {
         try {
-          const response = await axios.get(`${import.meta.env.VITE_API}/trending`);
-         
-          setInfo(response.data)
+          const response = await axios.get(`${import.meta.env.VITE_API}/alltimemovies`);
+         console.log(response)
+          setInfo(response.data.results)
         } catch (error) {
           console.error("Error fetching popular movies:", error);
         }
@@ -43,6 +42,7 @@ const Trending = () => {
 </ul>
 
         </>
+    
     )
 }
-export default Trending
+export default AllTimeMovie

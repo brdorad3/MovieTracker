@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { search_movie, details, fetch_image, fetch_similar, fetch_reviews, fetch_cast, fetch_search, trending_movie, trending_tv, toprated_movies } from "../controllers";
+import { search_movie, details, fetch_image, fetch_similar, fetch_reviews, fetch_cast, fetch_search, trending_movie, trending_tv, toprated_movies, all_time_movies } from "../controllers";
 
 const router = Router()
 
 router.get("/api/trending", search_movie);
+router.get("/api/alltimemovies", all_time_movies);
 router.post("/api/trending_movies", trending_movie);
 router.post("/api/trending_tv", trending_tv);
 router.get("/api/toprated_movies", toprated_movies)

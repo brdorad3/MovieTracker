@@ -172,7 +172,6 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
     const handleSort = (sort: any) => {
       if(sort == "Popularity") return "popularity.desc"
       else if(sort == "Rating") return "vote_average.desc"
-      else if(sort == "Rating") return "vote_average.desc"
       else if(sort == "Rating count") return "vote_count.desc"
       else if(sort == "Title asc") return "title.asc"
       else if(sort == "Title desc") return "title.desc"
@@ -183,7 +182,7 @@ const trending_movie = asyncHandler(async(req: Request, res: Response, next: Nex
     }
     
     for (let page = 1; page < 5; page++) {
-      let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${process.env.API_KEY}&vote_count.gte=100&page=${page}`;
+      let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&api_key=${process.env.API_KEY}&vote_count.gte=150&page=${page}`;
 
       
       if (yearFetch) {
@@ -317,6 +316,22 @@ const toprated_movies = asyncHandler(async(req: Request, res: Response, next: Ne
   
 })
 
+const all_time_movies = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+  try {
+      
+        const response = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&include_video=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=500`
+        );
+        const data = await response.json();     
+      
+        res.status(200).json(data)
+        
+    } catch (e) {
+      console.log(e)
+    }
+  
+})
+
 
   export{
     search_movie,
@@ -328,5 +343,6 @@ const toprated_movies = asyncHandler(async(req: Request, res: Response, next: Ne
     fetch_search,
     trending_movie,
     trending_tv,
-    toprated_movies
+    toprated_movies,
+    all_time_movies
   }

@@ -5,6 +5,7 @@
 #root{
   height: 100vh;
   max-width: 100vw;
+  
 }
 .n{
   background:url(bat2.jpeg) ;
@@ -50,8 +51,26 @@
     url("./fonts/Harabara Mais Demo.otf") format("opentype");
   
 }
+@font-face {
+  font-family: "Coco";
+  src: local("Cocogoose-Pro-Regular-trial.otf"),
+    url("./fonts/Cocogoose-Pro-Regular-trial.otf") format("opentype");
+  
+}
+@font-face {
+  font-family: "Cool";
+  src: local("Coolvetica Rg.otf"),
+    url("./fonts/Coolvetica Rg.otf") format("opentype");
+  
+}
 .harabara{
   font-family: "Harabara";
+}
+.coco{
+  font-family: "Coco";
+}
+.cool{
+  font-family: "Cool";
 }
 .lemon{
   font-family: "Lemon";
@@ -89,6 +108,9 @@
 }
 .shad2{
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.shad3{
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 input:focus{
   border-bottom: 1px solid #e5e7eb;

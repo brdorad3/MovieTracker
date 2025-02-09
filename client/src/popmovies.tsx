@@ -65,21 +65,21 @@ const PopMovies = () => {
     return(
         <>
         <Navbar/>
-        <div className="px-[313px] py-5">
-            <div className="w-full flex justify-between items-end border-b border-black pb-2Ö">
-            <h1>Popular movies</h1>
+        <div className="px-[313px] py-5 bg-[#0D0F12]">
+            <div className="w-full flex flex-col gap-10">
+            <h1 className="text-vour lemon cool font-black text-xl">Popular Movies</h1>
             <div className="flex gap-5 items-center">
                 <div className="relative flex items-center">
-                <form onSubmit={(e) => handleClick(e)} className="flex items-center">
-                <Input value={year} placeholder="Year" onChange={handleYearChange} />
+                <form onSubmit={(e) => handleClick(e)} className="flex items-center text-primary-foreground">
+                <Input value={year} placeholder="Year" onChange={handleYearChange} maxLength={4} minLength={4} min={1970} max={2026} />
                 <button type="submit"> <Search type="submit" className="absolute right-2 top-[6px] text-gray-400 w-4 z-50"  /></button>
                
                 </form>
                 </div>
-                <div className="relative">
+                <div className="relative text-primary-foreground">
                 
-                <Select onValueChange={(value) => setGenreFetch(value)}>
-                    <SelectTrigger className="w-[180px]">
+                <Select onValueChange={(value) => setGenreFetch(value)} >
+                    <SelectTrigger className="w-[180px]" >
                         <SelectValue placeholder="Genre" />
                     </SelectTrigger>
                     <SelectContent>
@@ -108,7 +108,7 @@ const PopMovies = () => {
                 </Select>
                 
                 </div>
-                <div className="relative">
+                <div className="relative text-primary-foreground">
                 <Select onValueChange={(value) => setSortFetch(value)}>
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Sort by" />
@@ -130,18 +130,18 @@ const PopMovies = () => {
                 </div>
             </div>
             </div>
-            <div className="grid grid-cols-5 gap-x-20 gap-y-20 py-10">
+            <div className="grid grid-cols-6 gap-x-8  gap-y-20 py-10">
                 {info &&
                 info.map((item: any, index) => (
-                    <div key={index} className="flex flex-col relative">
+                    <div key={index} className="flex flex-col relative ">
                         <div className="absolute -top-3 left-[75px] w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
                         style={{backgroundColor: handleBgColor(item.vote_average)}}
                         >
                             <p>{item.vote_average.toFixed(1)}</p>
                         </div>
-                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-48 h-64 rounded-sm" /></Link>
+                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-[185px] h-[265px] rounded-sm shad" /></Link>
                         <div>
-                            <Link to={`/:${item.id}`} state={item} ><p className="b  text-lg">{item.title}</p></Link>
+                            <Link to={`/:${item.id}`} state={item} ><p className="b text-lg text-sec">{item.title}</p></Link>
                            
                         </div>
                         
