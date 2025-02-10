@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { PlayCircle } from "lucide-react";
+import { Star } from "lucide-react";
 import { DateTime } from "luxon";
 import Description from "./description";
 import Photos from "./photos";
@@ -15,8 +15,9 @@ const Details = () => {
   const info = location.state;
   const [detailedInfo, setDetailedInfo] = useState<any>();
   const [currentPage, setCurrentPage] = useState("Description");
-
-console.log(info)
+  const [ratingBool, setRatingBool] = useState(false)
+  const [rating, setRating] = useState<number>()
+  const [hover, setHover] = useState<any>()
 
   const handleClick = async (item: any) => {
     try {
@@ -91,6 +92,10 @@ console.log(info)
 
   let sm = dt.toLocaleString(DateTime.DATE_MED);
 
+
+  const handleRatingClick = () => {
+    setRatingBool(!ratingBool)
+  }
   
   return (
     <>
@@ -127,9 +132,11 @@ console.log(info)
               </ul>
             </div>
             <button
-              className="bg-acc px-6 py-4 rounded-full flex gap-5 whitespace-nowrap absolute top-[220px] b text-xl font-bold items-center"
+              className="bg-acc pl-8 pr-4 py-[14px] rounded-full flex gap-5 whitespace-nowrap absolute top-[220px] text-xl b font-black items-center"
+              onClick={handleRatingClick}
             >
-              Watch Trailer <PlayCircle></PlayCircle>
+              <p className="tracking-wider">Your Rating</p>
+              <Star/>
             </button>
           </div>
           <div className="row-start-11">
@@ -149,7 +156,33 @@ console.log(info)
              {showPage()}
             </div>
           </div>
-          
+          { ratingBool &&
+              <div className="bg-first w-[600px] h-[300px] absolute abs">
+                <h2>Rate</h2>
+                <div className="flex">
+                 {[...Array(10)].map((star, index) => {
+                  const ratingVal = index + 1
+                  return (
+                    <label>
+                      <input 
+                      type="radio"
+                      name="rating"
+                      className="hidden"
+                      value={ratingVal}
+                      onClick={() => setRating(ratingVal)}
+                      />
+                      <Star
+                      className="star"
+                      color={ratingVal <= (hover || rating) ? "gray" : "yellow"}
+                      onMouseEnter={() => setHover(ratingVal)}
+                      onMouseLeave={() => setHover(null)}
+                      />
+                    </label>
+                  )
+                 })}
+                  </div>
+              </div>
+            }
         </div>
       )}
     </>

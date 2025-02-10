@@ -320,7 +320,7 @@ const all_time_movies = asyncHandler(async(req: Request, res: Response, next: Ne
   try {
       
         const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&include_video=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=500`
+          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&include_video=false&language=en-US&page=1&sort_by=vote_count.desc`
         );
         const data = await response.json();     
       

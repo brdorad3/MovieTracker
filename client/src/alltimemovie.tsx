@@ -23,7 +23,7 @@ const AllTimeMovie = () => {
     
     return(
         <>
-        <h1 className="text-lg py-8 cool font-bold tracking-widest text-vour ">TRENDING</h1>
+        <h1 className="text-lg py-8 cool font-bold tracking-widest text-vour ">ALL TIME POPULAR MOVIES</h1>
         <ul className="w-full flex justify-between">
   {info &&
     info.slice(0, 6).map((item: any) => (
