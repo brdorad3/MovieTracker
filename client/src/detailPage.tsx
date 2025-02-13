@@ -100,13 +100,17 @@ const Details = () => {
   return (
     <>
       {detailedInfo && (
-        <div
-          className="w-full h-full relative bg-cover grid grid-cols-custom grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30"
+        <div 
+          className={`w-full h-full  relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
+            
            
           }}
         >
+           {ratingBool && (
+             <div className="absolute inset-0 bg-black bg-opacity-50 z-40"></div>
+            )}
           <div className="flex justify-center gap-20 row-start-2 text-white col-start-6">
             <h2 className="ts2 z-50">MOVIES</h2>
             <h2 className="whitespace-nowrap ts2 z-50">TV SHOWS</h2>
@@ -144,7 +148,7 @@ const Details = () => {
               {sm}
             </p>
           </div>
-          <div className="col-span-full h-96 bg-white row-start-12 z-50">
+          <div className="col-span-full h-96 bg-white row-start-12 z-30">
             <ul className="grid grid-cols-5 justify-items-center h-16 items-center">
               <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
               <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
@@ -157,8 +161,8 @@ const Details = () => {
             </div>
           </div>
           { ratingBool &&
-              <div className="bg-first w-[600px] h-[300px] absolute abs">
-                <h2>Rate</h2>
+              <div className="bg-sec w-[600px] h-[300px] absolute abs shadcus rounded-lg z-50">
+                <h2 className="text-lg font-bold">Select you rating</h2>
                 <div className="flex">
                  {[...Array(10)].map((star, index) => {
                   const ratingVal = index + 1
@@ -173,13 +177,16 @@ const Details = () => {
                       />
                       <Star
                       className="star"
-                      color={ratingVal <= (hover || rating) ? "gray" : "yellow"}
+                      color={ratingVal <= (hover || rating) ? "yellow" : "gray"}
                       onMouseEnter={() => setHover(ratingVal)}
                       onMouseLeave={() => setHover(null)}
                       />
                     </label>
                   )
                  })}
+                  </div>
+                  <div className="absolute top-5 right-5" onClick={() => setRatingBool(false)}>
+                    x
                   </div>
               </div>
             }
