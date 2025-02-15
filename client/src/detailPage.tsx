@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Star } from "lucide-react";
+import { Star, XIcon } from "lucide-react";
 import { DateTime } from "luxon";
 import Description from "./description";
 import Photos from "./photos";
@@ -101,7 +101,7 @@ const Details = () => {
     <>
       {detailedInfo && (
         <div 
-          className={`w-full h-full  relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
+          className={`h-full relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
             
@@ -109,7 +109,7 @@ const Details = () => {
           }}
         >
            {ratingBool && (
-             <div className="absolute inset-0 bg-black bg-opacity-50 z-40"></div>
+             <div className="absolute inset-0 bg-black bg-opacity-40 z-40"></div>
             )}
           <div className="flex justify-center gap-20 row-start-2 text-white col-start-6">
             <h2 className="ts2 z-50">MOVIES</h2>
@@ -148,22 +148,13 @@ const Details = () => {
               {sm}
             </p>
           </div>
-          <div className="col-span-full h-96 bg-white row-start-12 z-30">
-            <ul className="grid grid-cols-5 justify-items-center h-16 items-center">
-              <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
-              <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
-              <li className={`${currentPage == "Similar" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Similar</li>
-              <li className={`${currentPage == "Reviews" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Reviews</li>
-              <li className={`${currentPage == "Cast" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Cast</li>
-            </ul>
-            <div className="px-16 py-10">
-             {showPage()}
-            </div>
-          </div>
+          
           { ratingBool &&
-              <div className="bg-sec w-[600px] h-[300px] absolute abs shadcus rounded-lg z-50">
-                <h2 className="text-lg font-bold">Select you rating</h2>
-                <div className="flex">
+              <div className="bg-sec w-[550px] h-[275px] absolute abs shadcus rounded-lg z-50">
+                <div className="flex flex-col pt-10 pl-8 gap-7 w-fit">
+                <h2 className="text-2xl  font-bold">Select your rating</h2>
+                <div className="flex flex-col gap-7">
+                  <div className="flex">
                  {[...Array(10)].map((star, index) => {
                   const ratingVal = index + 1
                   return (
@@ -176,22 +167,46 @@ const Details = () => {
                       onClick={() => setRating(ratingVal)}
                       />
                       <Star
-                      className="star"
-                      color={ratingVal <= (hover || rating) ? "yellow" : "gray"}
+                      size={40}
+                      className="star "
+                      fill={ratingVal <= (hover || rating) ? "#c03221" : "white"}
+                      
                       onMouseEnter={() => setHover(ratingVal)}
                       onMouseLeave={() => setHover(null)}
                       />
                     </label>
                   )
                  })}
+                 </div>
+                   <div className="w-full">
+                    <button className="w-full bg-acc py-[6px] rounded-full">Rate</button>
                   </div>
-                  <div className="absolute top-5 right-5" onClick={() => setRatingBool(false)}>
-                    x
                   </div>
+                
+                  </div>
+                  <div className="absolute top-3 right-3 cursor-pointer" onClick={() => setRatingBool(false)}>
+                    <XIcon/>
+                  </div>
+                 
               </div>
             }
+            
         </div>
       )}
+      <div className="bg-myBlack  relative grid grid-cols-custom justify-center">
+      <div className="w-full col-span-full bg-first shad absolute -top-24 z-30 text-sec">
+            <ul className="grid grid-cols-5 justify-items-center items-center pt-5 pb-1">
+              <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
+              <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
+              <li className={`${currentPage == "Similar" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Similar</li>
+              <li className={`${currentPage == "Reviews" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Reviews</li>
+              <li className={`${currentPage == "Cast" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Cast</li>
+            </ul>
+            <div className="px-16 py-10">
+             {showPage()}
+            </div>
+          </div>
+      </div>
     </>
   );
 };

@@ -16,6 +16,7 @@ export default {
   			acc: '#c03221',
   			sec: '#f7f7ff',
   			vour: '#f2d0a4',
+			myBlack: '#0D0F12',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

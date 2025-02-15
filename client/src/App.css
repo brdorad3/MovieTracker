@@ -5,7 +5,7 @@
 #root{
   height: 100vh;
   max-width: 100vw;
-  
+  background-color: black;
 }
 .n{
   background:url(bat2.jpeg) ;
@@ -225,14 +225,14 @@ margin-top: auto;
 margin-bottom: auto;
 top: 0;
 bottom: 0;
-text-align: center;
+
 }
 .star{
   cursor: pointer;
   transition: color 200ms;
 }
 .shadcus{
-  box-shadow: -10px 10px 0px black;
+  
   border: 4px solid black;
   font-family: sans-serif;
 }
