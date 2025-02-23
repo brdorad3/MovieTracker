@@ -19,7 +19,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
 
     return(
         <>
-        <nav className="h-[8%] w-full bg-[#0D0F12]  grid grid-cols-custom justify-center gap-x-[20px] items-center relative">
+        <nav className="h-[8%] w-full bg-first  grid grid-cols-custom justify-center gap-x-[20px] items-center relative">
             <Link to="/"><h1 className="text-3xl text-acc ">Robnite</h1></Link>
             <div className="col-start-3 flex gap-12">
             <div className="col-start-3 relative">
@@ -61,7 +61,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
             </div>
             }
             
-            <Search className="col-start-10 justify-self-center text-sec" size={30} onClick={handleClick} />
+            <Search className="col-start-10 justify-self-center text-sec cursor-pointer" size={30} onClick={handleClick} />
             <SunMoon className="col-start-11 text-sec justify-self-center" size={30} />
             <SignedIn><UserButton/></SignedIn>
             <SignedOut><div className="w-9 h-9 rounded-full bg-white"></div></SignedOut>

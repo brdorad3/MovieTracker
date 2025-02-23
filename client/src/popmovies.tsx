@@ -71,7 +71,7 @@ const PopMovies = () => {
             <div className="flex gap-5 items-center">
                 <div className="relative flex items-center">
                 <form onSubmit={(e) => handleClick(e)} className="flex items-center text-primary-foreground">
-                <Input value={year} placeholder="Year" onChange={handleYearChange} maxLength={4} minLength={4} min={1970} max={2026} />
+                <Input value={year} placeholder="Year" onChange={handleYearChange} maxLength={4} minLength={4} min={1970} max={2026} color="white" className="placeholder:text-white" />
                 <button type="submit"> <Search type="submit" className="absolute right-2 top-[6px] text-gray-400 w-4 z-50"  /></button>
                
                 </form>
@@ -80,7 +80,7 @@ const PopMovies = () => {
                 
                 <Select onValueChange={(value) => setGenreFetch(value)} >
                     <SelectTrigger className="w-[180px]" >
-                        <SelectValue placeholder="Genre" />
+                        <SelectValue placeholder="Genre"  />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>

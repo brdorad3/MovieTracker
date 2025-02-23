@@ -5,7 +5,9 @@
 #root{
   height: 100vh;
   max-width: 100vw;
-  background-color: black;
+}
+body{
+  background-color: #0D0F12;
 }
 .n{
   background:url(bat2.jpeg) ;

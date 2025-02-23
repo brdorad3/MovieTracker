@@ -33,9 +33,9 @@ const [res, setRes] = useState<any[]>([])
         return(
             <>
             <Navbar></Navbar>
-            <div  className="grid grid-cols-custom justify-center gap-x-[20px] py-14">
+            <div  className="grid grid-cols-custom justify-center gap-x-[20px] py-14 text-sec">
                 <div className="row-start-1 col-start-1">
-                    <h2 className="border-b border-black mb-2">Filters</h2>
+                    <h2 className="border-b border-sec mb-2">Filters</h2>
                     <p onClick={() => handleClick("movie")}>Movies</p>
                     <p onClick={() => handleClick("tv")}>TV Shows</p>
                 </div>
@@ -54,7 +54,7 @@ const [res, setRes] = useState<any[]>([])
     />
     </Link>
 ) : (
-    <div className="w-24 h-32 bg-gray-200 flex items-center justify-center">
+    <div className="w-24 h-32 bg-gray-200 flex items-center justify-center rounded-md text-first shad">
         <p>No Image</p>
     </div>
 )}
@@ -64,7 +64,7 @@ const [res, setRes] = useState<any[]>([])
                 </div>
                 
                 </div>
-                <div className="w-full h-[1px] bg-black "></div>
+                <div className="w-full h-[1px] bg-sec rounded-md "></div>
                 </div>
                 
             ))

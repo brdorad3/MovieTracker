@@ -18,6 +18,7 @@ const Details = () => {
   const [ratingBool, setRatingBool] = useState(false)
   const [rating, setRating] = useState<number>()
   const [hover, setHover] = useState<any>()
+  const [heigth, setHeigth] = useState()
 
   const handleClick = async (item: any) => {
     try {
@@ -39,7 +40,9 @@ const Details = () => {
   },[])
 
   const handlePageChange = (e: any) => {
+    console.log(e.target.parentNode)
     setCurrentPage(e.target.innerText);
+    
   }
   const showPage = () => {
     switch (currentPage) {
@@ -98,10 +101,11 @@ const Details = () => {
   }
   
   return (
-    <>
+    <div className="min-h-screen bg-first">
+    
       {detailedInfo && (
         <div 
-          className={`h-full relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
+          className={`h-screen relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
             
@@ -191,11 +195,8 @@ const Details = () => {
               </div>
             }
             
-        </div>
-      )}
-      <div className="bg-myBlack  relative grid grid-cols-custom justify-center">
-      <div className="w-full col-span-full bg-first shad absolute -top-24 z-30 text-sec">
-            <ul className="grid grid-cols-5 justify-items-center items-center pt-5 pb-1">
+          <div className="w-full col-span-full bg-first shad absolute z-30 text-sec row-start-12 h-fit">
+            <ul className="grid grid-cols-5 justify-items-center items-center pt-7">
               <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
               <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
               <li className={`${currentPage == "Similar" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Similar</li>
@@ -207,7 +208,9 @@ const Details = () => {
             </div>
           </div>
       </div>
-    </>
+        
+      )}
+    </div>
   );
 };
 
