@@ -18,7 +18,6 @@ const Details = () => {
   const [ratingBool, setRatingBool] = useState(false)
   const [rating, setRating] = useState<number>()
   const [hover, setHover] = useState<any>()
-  const [heigth, setHeigth] = useState()
 
   const handleClick = async (item: any) => {
     try {
@@ -34,6 +33,8 @@ const Details = () => {
 
   useEffect(() => {
     handleClick(info);
+    window.scrollTo(0,0)
+    setCurrentPage("Description")
   }, [info]);
   useEffect(() => {
     window.scrollTo(0,0)
@@ -154,9 +155,9 @@ const Details = () => {
           </div>
           
           { ratingBool &&
-              <div className="bg-sec w-[550px] h-[275px] absolute abs shadcus rounded-lg z-50">
+              <div className="bg-first w-[500px] h-[275px] absolute abs rounded-lg z-50">
                 <div className="flex flex-col pt-10 pl-8 gap-7 w-fit">
-                <h2 className="text-2xl  font-bold">Select your rating</h2>
+                <h2 className="text-2xl  font-bold text-sec">Select your rating</h2>
                 <div className="flex flex-col gap-7">
                   <div className="flex">
                  {[...Array(10)].map((star, index) => {
@@ -173,8 +174,8 @@ const Details = () => {
                       <Star
                       size={40}
                       className="star "
-                      fill={ratingVal <= (hover || rating) ? "#c03221" : "white"}
-                      
+                      fill={ratingVal <= (hover || rating) ? "#c03221" : "#222222"}
+                      color={ratingVal <= (hover || rating) ? "" : "gray"}
                       onMouseEnter={() => setHover(ratingVal)}
                       onMouseLeave={() => setHover(null)}
                       />
@@ -189,7 +190,7 @@ const Details = () => {
                 
                   </div>
                   <div className="absolute top-3 right-3 cursor-pointer" onClick={() => setRatingBool(false)}>
-                    <XIcon/>
+                    <XIcon color="white" />
                   </div>
                  
               </div>

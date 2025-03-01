@@ -19,9 +19,10 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
 
     return(
         <>
-        <nav className="h-[8%] w-full bg-first  grid grid-cols-custom justify-center gap-x-[20px] items-center relative">
+        <nav className="h-[8%] w-full bg-first flex px-[310px] justify-between  items-center relative">
+            <div className="flex items-center gap-32">
             <Link to="/"><h1 className="text-3xl text-acc ">Robnite</h1></Link>
-            <div className="col-start-3 flex gap-12">
+            <div className="col-start-3 flex gap-16">
             <div className="col-start-3 relative">
             <p className=" text-sec cursor-pointer" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
             {movie &&
@@ -44,8 +45,9 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
             </div>
             <SignInButton><p className="text-sec cursor-pointer">LOGIN</p></SignInButton>
             </div>
+            </div>
             {search &&
-            <div className="absolute -bottom-10 z-50 w-full h-10">
+            <div className="absolute -bottom-10 z-50 w-full h-10 left-0">
                 <input type="text" className="w-full h-full px-24 border-y border-gray-200" placeholder="Search..." onChange={(e) => handleInput(e)} value={info}/>
                 <Search className="absolute top-2 left-14 text-black" size={25}></Search>
                 {
@@ -60,12 +62,12 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
                 
             </div>
             }
-            
+            <div className="flex items-center gap-20">
             <Search className="col-start-10 justify-self-center text-sec cursor-pointer" size={30} onClick={handleClick} />
             <SunMoon className="col-start-11 text-sec justify-self-center" size={30} />
             <SignedIn><UserButton/></SignedIn>
             <SignedOut><div className="w-9 h-9 rounded-full bg-white"></div></SignedOut>
-            
+            </div>
         </nav>
         
         </>

@@ -65,6 +65,18 @@ body{
     url("./fonts/Coolvetica Rg.otf") format("opentype");
   
 }
+@font-face {
+  font-family: "Mont";
+  src: local("Montserrat-Regular.ttf"),
+    url("./fonts/Montserrat-Regular.ttf") format("opentype");
+  
+}
+@font-face {
+  font-family: "Pop";
+  src: local("Poppins-Regular.ttf"),
+    url("./fonts/Poppins-Regular.ttf") format("opentype");
+  
+}
 .harabara{
   font-family: "Harabara";
 }
@@ -88,6 +100,12 @@ body{
 }
 .f{
   font-family: "Teen";
+}
+.mont{
+  font-family: "Mont";
+}
+.pop{
+  font-family: "Pop";
 }
 .fade-effect1{
   display:block;

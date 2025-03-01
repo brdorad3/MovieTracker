@@ -32,6 +32,7 @@ const PopMovies = () => {
             console.error(e)
         }
     }
+    
 
     useEffect(() => {
         fetchMovies()
@@ -65,9 +66,9 @@ const PopMovies = () => {
     return(
         <>
         <Navbar/>
-        <div className="px-[313px] py-5 bg-[#0D0F12]">
+        <div className="px-[310px] py-10 bg-[#0D0F12]">
             <div className="w-full flex flex-col gap-10">
-            <h1 className="text-vour lemon cool font-black text-xl">Popular Movies</h1>
+            <h1 className="text-gray-200 mont text-3xl">Popular Movies</h1>
             <div className="flex gap-5 items-center">
                 <div className="relative flex items-center">
                 <form onSubmit={(e) => handleClick(e)} className="flex items-center text-primary-foreground">
