@@ -35,6 +35,7 @@ const AllTimeMovie = () => {
           src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
           alt=""
           className="w-full h-full rounded-md"
+          loading="lazy"
         />
       </li>
       </Link>

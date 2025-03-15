@@ -140,7 +140,7 @@ const PopMovies = () => {
                         >
                             <p>{item.vote_average.toFixed(1)}</p>
                         </div>
-                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-[185px] h-[265px] rounded-sm shad" /></Link>
+                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} loading="lazy" alt="poster" className="w-[185px] h-[265px] rounded-sm shad" /></Link>
                         <div>
                             <Link to={`/:${item.id}`} state={item} ><p className="b text-lg text-sec">{item.title}</p></Link>
                            

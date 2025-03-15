@@ -21,7 +21,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
         <>
         <nav className="h-[8%] w-full bg-first flex px-[310px] justify-between  items-center relative">
             <div className="flex items-center gap-32">
-            <Link to="/"><h1 className="text-3xl text-acc ">Robnite</h1></Link>
+            <Link to="/"><h1 className="text-3xl text-acc font-bold pop">Robnite</h1></Link>
             <div className="col-start-3 flex gap-16">
             <div className="col-start-3 relative">
             <p className=" text-sec cursor-pointer" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>

@@ -3,6 +3,7 @@ import "dotenv/config"
 import { MovieDb } from 'moviedb-promise'
 import asyncHandler from "express-async-handler";
 import { NextFunction, Request, Response } from "express";
+const Review = require("../models/review")
 
 const moviedb = new MovieDb(`${process.env.API_KEY}`)
 
@@ -332,6 +333,10 @@ const all_time_movies = asyncHandler(async(req: Request, res: Response, next: Ne
   
 })
 
+const saveReview = asyncHandler(async (req, res) => {
+ const rev = req.body
+ console.log(rev)
+});
 
   export{
     search_movie,
@@ -344,5 +349,6 @@ const all_time_movies = asyncHandler(async(req: Request, res: Response, next: Ne
     trending_movie,
     trending_tv,
     toprated_movies,
-    all_time_movies
+    all_time_movies,
+    saveReview
   }

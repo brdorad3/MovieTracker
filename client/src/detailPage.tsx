@@ -8,6 +8,7 @@ import Photos from "./photos";
 import Similar from "./similar";
 import Reviews from "./reviews";
 import Cast from "./cast";
+import { SignedIn, SignedOut, RedirectToSignUp, useUser } from "@clerk/clerk-react";
 
 
 const Details = () => {
@@ -18,6 +19,7 @@ const Details = () => {
   const [ratingBool, setRatingBool] = useState(false)
   const [rating, setRating] = useState<number>()
   const [hover, setHover] = useState<any>()
+  const {user} = useUser()
 
   const handleClick = async (item: any) => {
     try {
@@ -36,14 +38,19 @@ const Details = () => {
     window.scrollTo(0,0)
     setCurrentPage("Description")
   }, [info]);
-  useEffect(() => {
-    window.scrollTo(0,0)
-  },[])
+  
 
   const handlePageChange = (e: any) => {
     console.log(e.target.parentNode)
     setCurrentPage(e.target.innerText);
     
+  }
+  const handleRateClick = async() => {
+   try{
+    const res = await axios.post(`${import.meta.env.VITE_API}/save_review`, user)
+    console.log(res)
+   }
+    catch(e) {console.log(e)}
   }
   const showPage = () => {
     switch (currentPage) {
@@ -109,9 +116,10 @@ const Details = () => {
           className={`h-screen relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
-            
+          
            
           }}
+          
         >
            {ratingBool && (
              <div className="absolute inset-0 bg-black bg-opacity-40 z-40"></div>
@@ -155,6 +163,8 @@ const Details = () => {
           </div>
           
           { ratingBool &&
+          <div>
+          <SignedIn>
               <div className="bg-first w-[500px] h-[275px] absolute abs rounded-lg z-50">
                 <div className="flex flex-col pt-10 pl-8 gap-7 w-fit">
                 <h2 className="text-2xl  font-bold text-sec">Select your rating</h2>
@@ -184,7 +194,8 @@ const Details = () => {
                  })}
                  </div>
                    <div className="w-full">
-                    <button className="w-full bg-acc py-[6px] rounded-full">Rate</button>
+                    
+                    <button className="w-full bg-acc py-[6px] rounded-full" onClick={handleRateClick}>Rate</button>
                   </div>
                   </div>
                 
@@ -193,6 +204,9 @@ const Details = () => {
                     <XIcon color="white" />
                   </div>
                  
+              </div>
+              </SignedIn>
+              <SignedOut> <RedirectToSignUp/></SignedOut>
               </div>
             }
             
