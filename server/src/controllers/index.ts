@@ -3,7 +3,7 @@ import "dotenv/config"
 import { MovieDb } from 'moviedb-promise'
 import asyncHandler from "express-async-handler";
 import { NextFunction, Request, Response } from "express";
-const Review = require("../models/review")
+import Review from "../models/review"
 
 const moviedb = new MovieDb(`${process.env.API_KEY}`)
 
@@ -334,8 +334,36 @@ const all_time_movies = asyncHandler(async(req: Request, res: Response, next: Ne
 })
 
 const saveReview = asyncHandler(async (req, res) => {
- const rev = req.body
- console.log(rev)
+  try{
+ const user = req.body.user.id
+ const rating = req.body.rating
+ const name = req.body.detailedInfo.title || req.body.detailedInfo.name 
+
+ const existingReview = await Review.findOne({ userId: user, movieName: name });
+
+ if (existingReview) {
+     await Review.findOneAndUpdate({movieName: name, userId: user},
+         {rating: rating},
+         {new: true}
+         
+     
+     )}else{
+      const review = new Review(
+        {userId: user,
+         movieName: name,
+         rating: rating
+        });
+    
+      await review.save();
+    
+        res.status(200).json({ message: "Review saved", review });
+     }
+
+
+  }catch(e){
+    res.status(500).json({ message: "Error saving review", e });
+  }
+
 });
 
   export{

@@ -19,10 +19,10 @@ const Description = (props: any) => {
                <div className="flex gap-2 pt-2 pb-3 border-b">
                     <h2 className="font-bold">Languages </h2>
                     {info.languages ? info.languages.map((item: any) => (
-                        <p>{item}</p>
+                        <p key={item.id}>{item}</p>
                     )):
                     info.spoken_languages.map((item: any) => (
-                        <p>{item.name}</p>
+                        <p key={item.id}>{item.name}</p>
                     ))
                     
                     }

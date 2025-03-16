@@ -41,13 +41,12 @@ const Details = () => {
   
 
   const handlePageChange = (e: any) => {
-    console.log(e.target.parentNode)
     setCurrentPage(e.target.innerText);
     
   }
   const handleRateClick = async() => {
    try{
-    const res = await axios.post(`${import.meta.env.VITE_API}/save_review`, user)
+    const res = await axios.post(`${import.meta.env.VITE_API}/save_review`, {user, rating, detailedInfo})
     console.log(res)
    }
     catch(e) {console.log(e)}
@@ -173,13 +172,14 @@ const Details = () => {
                  {[...Array(10)].map((star, index) => {
                   const ratingVal = index + 1
                   return (
-                    <label>
+                    <label key={index}>
                       <input 
                       type="radio"
                       name="rating"
                       className="hidden"
                       value={ratingVal}
                       onClick={() => setRating(ratingVal)}
+                      
                       />
                       <Star
                       size={40}
