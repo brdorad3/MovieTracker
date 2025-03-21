@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { search_movie, details, fetch_image, fetch_similar, fetch_reviews, fetch_cast, fetch_search, trending_movie, trending_tv, toprated_movies, all_time_movies, saveReview } from "../controllers";
+import { search_movie, details, fetch_image, fetch_similar, fetch_reviews, fetch_cast, fetch_search, trending_movie, trending_tv, toprated_movies, all_time_movies, saveReview, fetch_user_review } from "../controllers";
 
 const router = Router()
 
@@ -15,6 +15,7 @@ router.post("/api/reviews", fetch_reviews);
 router.post("/api/cast", fetch_cast);
 router.post("/api/search", fetch_search);
 router.post("/api/save_review", saveReview)
+router.post("/api/fetch_user_review", fetch_user_review)
 
 
 export default router

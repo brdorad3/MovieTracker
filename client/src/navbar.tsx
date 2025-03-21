@@ -44,6 +44,9 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
             }
             </div>
             <SignInButton><p className="text-sec cursor-pointer">LOGIN</p></SignInButton>
+            <div>
+                <Link to = "/mylist" >My list</Link>
+            </div>
             </div>
             </div>
             {search &&

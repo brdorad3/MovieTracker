@@ -11,6 +11,7 @@ import TopMovies from './topmovies.tsx';
 import { ClerkProvider } from '@clerk/clerk-react'
 import Login from './login.tsx';
 import { neobrutalism } from '@clerk/themes';
+import MyList from './mylist.tsx';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/topmovies",
     element: <TopMovies />,
+  },
+  {
+    path: "/mylist",
+    element: <MyList />,
   },
   {
     path: "/login",

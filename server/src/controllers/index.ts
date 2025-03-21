@@ -338,6 +338,9 @@ const saveReview = asyncHandler(async (req, res) => {
  const user = req.body.user.id
  const rating = req.body.rating
  const name = req.body.detailedInfo.title || req.body.detailedInfo.name 
+ const url = req.body.detailedInfo.poster_path
+ const id = req.body.detailedInfo.id
+
 
  const existingReview = await Review.findOne({ userId: user, movieName: name });
 
@@ -350,8 +353,10 @@ const saveReview = asyncHandler(async (req, res) => {
      )}else{
       const review = new Review(
         {userId: user,
-         movieName: name,
-         rating: rating
+         name: name,
+         rating: rating,
+         poster_url: url,
+         movieId: id
         });
     
       await review.save();
@@ -366,6 +371,20 @@ const saveReview = asyncHandler(async (req, res) => {
 
 });
 
+const fetch_user_review = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+
+  const user = req.body.user
+
+  const revs = await Review.find({userId: user.id})
+
+  if(revs){
+    res.status(200).json({revs})
+  }
+  else{
+    res.status(200).json({message: "No reviews"})
+  }
+})
+
   export{
     search_movie,
     details,
@@ -378,5 +397,6 @@ const saveReview = asyncHandler(async (req, res) => {
     trending_tv,
     toprated_movies,
     all_time_movies,
-    saveReview
+    saveReview,
+    fetch_user_review
   }

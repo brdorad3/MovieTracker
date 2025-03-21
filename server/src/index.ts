@@ -26,4 +26,4 @@ app.use("/", route)
 
 
 
-app.listen(3000)
+app.listen(3000, () => {console.log("Running")})
