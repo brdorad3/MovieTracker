@@ -22,7 +22,7 @@ const MyList = () => {
     }
 
     useEffect(()=>{
-        console.log(user)
+        
         fetch_review()
     }, [])
 
@@ -58,9 +58,9 @@ const MyList = () => {
                                             >
                                                 <p>{review.rating}</p>
                                             </div>
-                                            <Link to={`/:${review.id}`} state={review}><img  src={`https://image.tmdb.org/t/p/original${review.poster_url}`} loading="lazy" alt="poster" className="w-[185px] h-[265px] rounded-sm shad" /></Link>
+                                            <Link to={`/:${review.movieId}`} state={review}><img  src={`https://image.tmdb.org/t/p/original${review.poster_url}`} loading="lazy" alt="poster" className="w-[185px] h-[265px] rounded-sm shad" /></Link>
                                             <div>
-                                                <Link to={`/:${review.id}`} state={review} ><p className="b text-lg text-sec">{review.name}</p></Link>
+                                                <Link to={`/:${review.movieId}`} state={review} ><p className="b text-lg text-sec">{review.name}</p></Link>
                                                
                                             </div>
                                             

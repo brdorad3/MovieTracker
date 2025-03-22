@@ -19,7 +19,21 @@ const Details = () => {
   const [ratingBool, setRatingBool] = useState(false)
   const [rating, setRating] = useState<number>()
   const [hover, setHover] = useState<any>()
+  const [reviewInfo, setReviewInfo] = useState<any>()
   const {user} = useUser()
+
+
+  const handleReviewFetch = async(item: any) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API}/fetch_detail_review`,
+        { item, user }
+      );
+      setReviewInfo(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  }
 
   const handleClick = async (item: any) => {
     try {
@@ -34,9 +48,14 @@ const Details = () => {
   };
 
   useEffect(() => {
+    
     handleClick(info);
     window.scrollTo(0,0)
     setCurrentPage("Description")
+
+    if(user){
+      handleReviewFetch(info)
+    }
   }, [info]);
   
 
@@ -152,7 +171,12 @@ const Details = () => {
               onClick={handleRatingClick}
             >
               <p className="tracking-wider">Your Rating</p>
+              <div className="flex items-center gap-2">
               <Star/>
+              {reviewInfo &&
+               <p>{reviewInfo.rating}/10</p>
+              }
+              </div>
             </button>
           </div>
           <div className="row-start-11">

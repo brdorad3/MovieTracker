@@ -50,12 +50,13 @@ const search_movie = asyncHandler(async(req: Request, res: Response, next: NextF
 })
 const details = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    
-    if(req.body.item.media_type == "tv" || req.body.item.first_air_date){
-     const response = await moviedb.tvInfo({id:req.body.item.id})
+    console.log(req.body.item)
+    const item = req.body.item
+    if(item.media_type == "tv" || item.first_air_date){
+     const response = await moviedb.tvInfo({id: item.id || item.movieId})
      res.status(200).json(response)
     }else{
-      const response = await moviedb.movieInfo({id:req.body.item.id})
+      const response = await moviedb.movieInfo({id: item.id ||item.movieId})
      res.status(200).json(response)
     }
    
@@ -340,12 +341,17 @@ const saveReview = asyncHandler(async (req, res) => {
  const name = req.body.detailedInfo.title || req.body.detailedInfo.name 
  const url = req.body.detailedInfo.poster_path
  const id = req.body.detailedInfo.id
+ let type
+ if(req.body.detailedInfo.first_air_date){
+  type = "tv"
+ }else{
+  type = "movie"
+ }
 
-
- const existingReview = await Review.findOne({ userId: user, movieName: name });
+ const existingReview = await Review.findOne({ userId: user, movieId: id });
 
  if (existingReview) {
-     await Review.findOneAndUpdate({movieName: name, userId: user},
+     await Review.findOneAndUpdate({movieId: id, userId: user},
          {rating: rating},
          {new: true}
          
@@ -356,6 +362,7 @@ const saveReview = asyncHandler(async (req, res) => {
          name: name,
          rating: rating,
          poster_url: url,
+         type: type,
          movieId: id
         });
     
@@ -385,6 +392,22 @@ const fetch_user_review = asyncHandler(async(req: Request, res: Response, next: 
   }
 })
 
+const fetch_detail_review = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+
+  const userId = req.body.user.id
+  const movieId = req.body.item.id || req.body.item.movieId
+
+  const revs = await Review.find({userId, movieId})
+
+  if(revs){
+    res.status(200).json(revs)
+  }
+  else{
+    res.status(200).json({message: "No reviews"})
+  }
+
+})
+
   export{
     search_movie,
     details,
@@ -398,5 +421,6 @@ const fetch_user_review = asyncHandler(async(req: Request, res: Response, next: 
     toprated_movies,
     all_time_movies,
     saveReview,
-    fetch_user_review
+    fetch_user_review,
+    fetch_detail_review
   }
