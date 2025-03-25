@@ -408,6 +408,18 @@ const fetch_detail_review = asyncHandler(async(req: Request, res: Response, next
 
 })
 
+const delete_review = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+
+  const userId = req.body.user.id
+  const movieId = req.body.detailedInfo.id
+
+  await Review.findOneAndDelete({userId, movieId})
+
+  res.status(200).json({Message: "Successfuly deleted"})
+
+})
+
+
   export{
     search_movie,
     details,
@@ -422,5 +434,6 @@ const fetch_detail_review = asyncHandler(async(req: Request, res: Response, next
     all_time_movies,
     saveReview,
     fetch_user_review,
-    fetch_detail_review
+    fetch_detail_review,
+    delete_review
   }

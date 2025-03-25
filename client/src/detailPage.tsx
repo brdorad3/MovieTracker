@@ -20,6 +20,8 @@ const Details = () => {
   const [rating, setRating] = useState<number>()
   const [hover, setHover] = useState<any>()
   const [reviewInfo, setReviewInfo] = useState<any>()
+  const [deleteConfirm, setDeleteConfirm] = useState(false)
+  const [reviewConfirm, setReviewConfirm] = useState(false)
   const {user} = useUser()
 
 
@@ -56,7 +58,7 @@ const Details = () => {
     if(user){
       handleReviewFetch(info)
     }
-  }, [info]);
+  }, [info, reviewInfo, reviewConfirm]);
   
 
   const handlePageChange = (e: any) => {
@@ -66,7 +68,12 @@ const Details = () => {
   const handleRateClick = async() => {
    try{
     const res = await axios.post(`${import.meta.env.VITE_API}/save_review`, {user, rating, detailedInfo})
-    console.log(res)
+    
+
+    setReviewConfirm(true)
+    setTimeout(() => {
+      setReviewConfirm(false)
+    },5000)
    }
     catch(e) {console.log(e)}
   }
@@ -111,6 +118,23 @@ const Details = () => {
     }
   }
 
+  const handleDelete = async() => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API}/delete_review`,
+        { detailedInfo, user }
+      );
+
+      setDeleteConfirm(true)
+      setTimeout(() => {
+        setDeleteConfirm(false)
+      },5000)
+      
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  }
+
 
   let dt;
   detailedInfo
@@ -127,7 +151,7 @@ const Details = () => {
   }
   
   return (
-    <div className="min-h-screen bg-first">
+    <div className="min-h-screen bg-first relative">
     
       {detailedInfo && (
         <div 
@@ -220,6 +244,7 @@ const Details = () => {
                    <div className="w-full">
                     
                     <button className="w-full bg-acc py-[6px] rounded-full" onClick={handleRateClick}>Rate</button>
+                    <button className="p-1 bg-white rounded-md mt-3" onClick={handleDelete}>Delete review</button>
                   </div>
                   </div>
                 
@@ -249,6 +274,15 @@ const Details = () => {
       </div>
         
       )}
+      {
+        deleteConfirm &&
+        <div className="absolute top-0 right-5 bg-red-500">Review successfully deleted!</div>
+      }
+       {
+        reviewConfirm &&
+        <div className="absolute top-0 right-5 bg-red-500">Review successfully created!</div>
+      }
+      
     </div>
   );
 };
