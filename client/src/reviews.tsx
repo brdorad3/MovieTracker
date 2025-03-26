@@ -10,7 +10,6 @@ const Reviews = (props:any) => {
     const fetchImages = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/reviews`, {info})
-            console.log(response.data)
             setReview(response.data.results)
         }catch(e){
             console.error(e)

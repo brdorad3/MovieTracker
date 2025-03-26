@@ -10,7 +10,6 @@ const Cast = (props: any) => {
     const fetchImages = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/cast`, {info})
-            console.log(response.data)
             setReview(response.data.cast)
         }catch(e){
             console.error(e)

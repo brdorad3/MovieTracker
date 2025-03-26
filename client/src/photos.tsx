@@ -9,7 +9,7 @@ const Photos = (props:any) => {
     const fetchImages = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/images`, {info})
-            console.log(response.data)
+           
             setPhoto(response.data.backdrops)
         }catch(e){
             console.error(e)
@@ -28,7 +28,7 @@ const Photos = (props:any) => {
             photo &&
             
             photo.map((item) => (
-                <img src={`https://image.tmdb.org/t/p/original${item.file_path}`} alt="" className="rounded-lg" key={item.id}/>
+                <img src={`https://image.tmdb.org/t/p/original${item.file_path}`} alt="" className="rounded-lg" key={item.id} loading="lazy"/>
             ))
             
         }

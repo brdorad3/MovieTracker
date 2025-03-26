@@ -12,10 +12,8 @@ const MyList = () => {
     const fetch_review = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/fetch_user_review`, user)
-            console.log(response)
             setUserData(response.data.revs)
-            
-
+        
         }catch(e){
             console.error(e)
         }

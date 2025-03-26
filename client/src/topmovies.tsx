@@ -10,7 +10,7 @@ const TopMovies = () => {
     const fetchMovies = async() => {
         try{
             const response = await axios.get(`${import.meta.env.VITE_API}/toprated_movies`);
-            console.log(response.data)
+           
             setInfo(response.data)
         }catch(e){
             console.error(e)

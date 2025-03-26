@@ -2,6 +2,7 @@
 
 const Description = (props: any) => {
         const info = props.state
+        console.log(info)
     return(
         <>
         {info &&
@@ -67,6 +68,13 @@ const Description = (props: any) => {
                     <div className="flex gap-2 border-b pb-3 pt-2">
                      <p className="font-bold">Revenue </p>
                          <p>${info.revenue}</p>
+                    </div>
+                         }
+                         {info.vote_average &&
+                    
+                    <div className="flex gap-2 border-b pb-3 pt-2">
+                     <p className="font-bold">Rating </p>
+                         <p>{info.vote_average.toFixed(1)}/10 &#40;{info.vote_count}&#41;</p>
                     </div>
                          }
               

@@ -1,27 +1,30 @@
 import Navbar from "./navbar"
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { ChevronDown, ChevronRight } from "lucide-react"
 import { Link } from "react-router-dom"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+    SelectGroup,
+    SelectLabel
+  } from "@/components/ui/select"
+  import { Input } from "@/components/ui/input"
+  import { Search } from "lucide-react"
 
 const PopTv = () => {
     const [info, setInfo] = useState<any[]>([])
-    const [yr, setYr] = useState(false)
-    const [gr, setGr] = useState(false)
-    const [sr, setSr] = useState(false)
-    const [twens, setTwens] = useState(false)
-    const [tens, setTens] = useState(false)
-    const [oos, setOos] = useState(false)
-    const [nines, setNines] = useState(false)
-    const [eits, setEits] = useState(false)
-    const [yearFetch, setYearFetch] = useState(0)
+    const [year, setYear] = useState()
+    const [yearFetch, setYearFetch] = useState()
     const [genreFetch, setGenreFetch] = useState("")
     const [sortFetch, setSortFetch] = useState("Popularity")
 
     const fetchMovies = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/trending_tv`, {yearFetch, genreFetch, sortFetch});
-            console.log(response.data)
+           
             setInfo(response.data)
         }catch(e){
             console.error(e)
@@ -33,194 +36,109 @@ const PopTv = () => {
     },[yearFetch, genreFetch, sortFetch])
 
     const handleClick = (e:any) => {
-       
-        setYearFetch(e.target.innerText)
+        e.preventDefault()
+        setYearFetch(year)
     }
-    const handleGenreClick = (e:any) => {
-        
-        setGenreFetch(e.target.innerText)
-    }
-    const handleSortClick = (e:any) => {
-        
-        setSortFetch(e.target.innerText)
+    const handleYearChange = (e:any) => {
+        setYear(e.target.value)
     }
     const handleBgColor = (item: any) => {
         if(item > 6 && item < 7){
-            return "yellow"
-        }else if(item > 7 && item < 8){
-            return "orange"
+            return "#f39c12"
+        }else if(item >= 7 && item < 8){
+            return "#f4d03f"
         }
-        else if(item > 8 && item < 9){
-            return "lime"
+        else if(item >= 8 && item < 9){
+            return "#28b463"
         }
-        else if(item > 9 && item < 10){
-            return "green"
+        else if(item >= 9 && item < 10){
+            return "#186a3b"
         }
         else if(item < 6){
-            return "red"
+            return "#e74c3c"
         }
     }
 
     return(
         <>
         <Navbar/>
-        <div className="px-[313px] py-5">
-            <div className="w-full border-b border-black flex justify-between">
-            <h1>Popular tv shows</h1>
-            <div className="flex gap-5">
-                <div className="relative year">
-                    
-                <h2 className="flex items-center" onMouseOver={() => setYr(true)} onMouseOut={() => setYr(false)}>Year <ChevronDown  size={16}/></h2>
-                {yr &&
-                <div className="p-2 bg-white shad absolute top-0 rounded-lg z-10" onMouseOver={() => setYr(true)} onMouseOut={() => setYr(false)}>
-                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setTwens(true)} onMouseOut={() => setTwens(false)}>2020s <ChevronRight size={15} />
-                    {twens && 
-                    <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setTwens(true)} onMouseOut={() => setTwens(false)}>
-                        <p onClick={(e) => handleClick(e)}>2025</p>
-                        <p onClick={(e) => handleClick(e)}>2024</p>
-                        <p onClick={(e) => handleClick(e)}>2023</p>
-                        <p onClick={(e) => handleClick(e)}>2022</p>
-                        <p onClick={(e) => handleClick(e)}>2021</p>
-                        <p onClick={(e) => handleClick(e)}>2020</p>
-                    </div>
-                    }
-                    </div>
-                    
-                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setTens(true)} onMouseOut={() => setTens(false)}>2010s <ChevronRight size={15}/>
-                    
-                    {tens && 
-                    <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setTens(true)} onMouseOut={() => setTens(false)}>
-                        <p onClick={(e) => handleClick(e)}>2019</p>
-                        <p onClick={(e) => handleClick(e)}>2018</p>
-                        <p onClick={(e) => handleClick(e)}>2017</p>
-                        <p onClick={(e) => handleClick(e)}>2016</p>
-                        <p onClick={(e) => handleClick(e)}>2015</p>
-                        <p onClick={(e) => handleClick(e)}>2014</p>
-                        <p onClick={(e) => handleClick(e)}>2013</p>
-                        <p onClick={(e) => handleClick(e)}>2012</p>
-                        <p onClick={(e) => handleClick(e)}>2011</p>
-                        <p onClick={(e) => handleClick(e)}>2010</p>                    
-                    </div>
-                    }
-                    
-                    </div>
-                   
-                   
-                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setOos(true)} onMouseOut={() => setOos(false)}>2000s <ChevronRight size={15}
-                    
-                    />
-                    {oos && 
-                    <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setOos(true)} onMouseOut={() => setOos(false)}>
-                        <p onClick={(e) => handleClick(e)}>2009</p>
-                        <p onClick={(e) => handleClick(e)}>2008</p>
-                        <p onClick={(e) => handleClick(e)}>2007</p>
-                        <p onClick={(e) => handleClick(e)}>2006</p>
-                        <p onClick={(e) => handleClick(e)}>2005</p>
-                        <p onClick={(e) => handleClick(e)}>2004</p>
-                        <p onClick={(e) => handleClick(e)}>2003</p>
-                        <p onClick={(e) => handleClick(e)}>2002</p>
-                        <p onClick={(e) => handleClick(e)}>2001</p>
-                        <p onClick={(e) => handleClick(e)}>2000</p>                    
-                    </div>
-                    }
-                    
-                    </div>
-                    
-                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setNines(true)} onMouseOut={() => setNines(false)}>1990s <ChevronRight size={15}/>
-                    
-                    {nines && 
-                    <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setNines(true)} onMouseOut={() => setNines(false)}>
-                        <p onClick={(e) => handleClick(e)}>1999</p>
-                        <p onClick={(e) => handleClick(e)}>1998</p>
-                        <p onClick={(e) => handleClick(e)}>1997</p>
-                        <p onClick={(e) => handleClick(e)}>1996</p>
-                        <p onClick={(e) => handleClick(e)}>1995</p>
-                        <p onClick={(e) => handleClick(e)}>1994</p>
-                        <p onClick={(e) => handleClick(e)}>1993</p>
-                        <p onClick={(e) => handleClick(e)}>1992</p>
-                        <p onClick={(e) => handleClick(e)}>1991</p>
-                        <p onClick={(e) => handleClick(e)}>1990</p>                    
-                    </div>
-                    }
-                    
-                    
-                    </div>
-                    <div className="flex gap-10 items-center relative text-sm" onMouseOver={() => setEits(true)} onMouseOut={() => setEits(false)}>1980s <ChevronRight size={15}/>
-                    
-                    {eits && 
-                    <div className="absolute top-0 -right-6 bg-white p-2 shad z-20 rounded-md" onMouseOver={() => setEits(true)} onMouseOut={() => setEits(false)}>
-                        <p onClick={(e) => handleClick(e)}>1989</p>
-                        <p onClick={(e) => handleClick(e)}>1988</p>
-                        <p onClick={(e) => handleClick(e)}>1987</p>
-                        <p onClick={(e) => handleClick(e)}>1986</p>
-                        <p onClick={(e) => handleClick(e)}>1985</p>
-                        <p onClick={(e) => handleClick(e)}>1984</p>
-                        <p onClick={(e) => handleClick(e)}>1983</p>
-                        <p onClick={(e) => handleClick(e)}>1982</p>
-                        <p onClick={(e) => handleClick(e)}>1981</p>
-                        <p onClick={(e) => handleClick(e)}>1980</p>                    
-                    </div>
-                    }
-                    
-                    </div>
+        <div className="px-[310px] py-10 bg-[#0D0F12]">
+            <div className="w-full flex flex-col gap-10">
+            <h1 className="text-gray-200 mont text-3xl">Popular TV Shows</h1>
+            <div className="flex gap-5 items-center">
+                <div className="relative flex items-center">
+                <form onSubmit={(e) => handleClick(e)} className="flex items-center text-primary-foreground">
+                <Input value={year} placeholder="Year" onChange={handleYearChange} maxLength={4} minLength={4} min={1970} max={2026} color="white" className="placeholder:text-white" />
+                <button type="submit"> <Search type="submit" className="absolute right-2 top-[6px] text-gray-400 w-4 z-50"  /></button>
+               
+                </form>
                 </div>
-                }
+                <div className="relative text-primary-foreground">
+                
+                <Select onValueChange={(value) => setGenreFetch(value)} >
+                    <SelectTrigger className="w-[180px]" >
+                        <SelectValue placeholder="Genre"  />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Genre</SelectLabel>
+                            <SelectItem value="Action" >Action</SelectItem>
+                            <SelectItem value="Adventure" >Adventure</SelectItem>
+                            <SelectItem value="Animation" >Animation</SelectItem>
+                            <SelectItem value="Comedy" >Comedy</SelectItem>
+                            <SelectItem value="Crime" >Crime</SelectItem>
+                            <SelectItem value="Documentary" >Documentary</SelectItem>
+                            <SelectItem value="Drama" >Drama</SelectItem>
+                            <SelectItem value="Family" >Family</SelectItem>
+                            <SelectItem value="Fantasy" >Fantasy</SelectItem>
+                            <SelectItem value="History" >History</SelectItem>
+                            <SelectItem value="Horror" >Horror</SelectItem>
+                            <SelectItem value="Music" >Music</SelectItem>
+                            <SelectItem value="Mystery" >Mystery</SelectItem>
+                            <SelectItem value="Romance" >Romance</SelectItem>
+                            <SelectItem value="Sci fi" >Sci fi</SelectItem>
+                            <SelectItem value="Thriller" >Thriller</SelectItem>
+                            <SelectItem value="War" >War</SelectItem>
+                            <SelectItem value="Western" >Western</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+                
                 </div>
-                <div className="relative">
-                <h2 className="flex items-center" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>Genre <ChevronDown  size={16}/></h2>
-                {gr &&
-                <div className="absolute top-0 left-0 bg-white shad genre z-10" onMouseOver={() => setGr(true)} onMouseOut={() => setGr(false)}>
-                    <h3 className="border-b border-black">Genre</h3>
-                    <p onClick={(e) => handleGenreClick(e)}>Action</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Adventure</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Animation</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Comedy</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Crime</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Documentary</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Drama</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Family</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Fantasy</p>
-                    <p onClick={(e) => handleGenreClick(e)}>History</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Horror</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Music</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Mystery</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Romance</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Sci fi</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Thriller</p>
-                    <p onClick={(e) => handleGenreClick(e)}>War</p>
-                    <p onClick={(e) => handleGenreClick(e)}>Western</p>
-                </div>
-                }
-                </div>
-                <div className="relative">
-                <h2 className="flex items-center" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>Sort by <ChevronDown  size={16}/></h2>
-                {sr &&
-                <div className="p-2 absolute top-0 bg-white shad rounded-sm z-10" onMouseOver={() => setSr(true)} onMouseOut={() => setSr(false)}>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Popularity</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Rating</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Rating count</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Title desc</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Title asc</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Revenue</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Date desc</p>
-                <p className="text-sm whitespace-nowrap hover:cursor-pointer" onClick={(e) => handleSortClick(e)}>Date asc</p>
-                </div>
-                }
+                <div className="relative text-primary-foreground">
+                <Select onValueChange={(value) => setSortFetch(value)}>
+                    <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Sort</SelectLabel>
+                            <SelectItem value="Popularity" >Popularity</SelectItem>
+                            <SelectItem value="Rating" >Rating</SelectItem>
+                            <SelectItem value="Rating count" >Rating count</SelectItem>
+                            <SelectItem value="Title desc" >Title desc</SelectItem>
+                            <SelectItem value="Title asc" >Title asc</SelectItem>
+                            <SelectItem value="Revenue" >Revenue</SelectItem>
+                            <SelectItem value="Date desc" >Date desc</SelectItem>
+                            <SelectItem value="Date asc" >Date asc</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
                 </div>
             </div>
             </div>
-            <div className="grid grid-cols-5 gap-x-20 gap-y-20 py-10">
+            <div className="grid grid-cols-6 gap-x-8  gap-y-20 py-10">
                 {info &&
                 info.map((item: any, index) => (
-                    <div key={index} className="flex flex-col relative">
+                    <div key={index} className="flex flex-col relative ">
                         <div className="absolute -top-3 left-[75px] w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
                         style={{backgroundColor: handleBgColor(item.vote_average)}}
                         >
                             <p>{item.vote_average.toFixed(1)}</p>
                         </div>
-                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-48 h-64 rounded-sm" /></Link>
+                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} loading="lazy" alt="poster" className="w-[185px] h-[265px] rounded-sm shad" /></Link>
                         <div>
-                            <Link to={`/:${item.id}`} state={item} ><p className="b  text-lg">{item.name}</p></Link>
+                            <Link to={`/:${item.id}`} state={item} ><p className="b text-lg text-sec">{item.title}</p></Link>
                            
                         </div>
                         

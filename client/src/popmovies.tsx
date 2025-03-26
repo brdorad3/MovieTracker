@@ -26,7 +26,6 @@ const PopMovies = () => {
     const fetchMovies = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/trending_movies`, {yearFetch, genreFetch, sortFetch});
-            console.log(response.data)
             setInfo(response.data)
         }catch(e){
             console.error(e)

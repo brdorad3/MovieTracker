@@ -10,7 +10,6 @@ const AllTimeMovie = () => {
     const fetchPopular = async () => {
         try {
           const response = await axios.get(`${import.meta.env.VITE_API}/alltimemovies`);
-         console.log(response)
           setInfo(response.data.results)
         } catch (error) {
           console.error("Error fetching popular movies:", error);

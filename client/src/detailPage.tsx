@@ -6,6 +6,7 @@ import { DateTime } from "luxon";
 import Description from "./description";
 import Photos from "./photos";
 import Similar from "./similar";
+import { Link } from "react-router-dom";
 import Reviews from "./reviews";
 import Cast from "./cast";
 import { SignedIn, SignedOut, RedirectToSignUp, useUser } from "@clerk/clerk-react";
@@ -23,6 +24,7 @@ const Details = () => {
   const [deleteConfirm, setDeleteConfirm] = useState(false)
   const [reviewConfirm, setReviewConfirm] = useState(false)
   const {user} = useUser()
+  
 
 
   const handleReviewFetch = async(item: any) => {
@@ -67,7 +69,7 @@ const Details = () => {
   }
   const handleRateClick = async() => {
    try{
-    const res = await axios.post(`${import.meta.env.VITE_API}/save_review`, {user, rating, detailedInfo})
+     await axios.post(`${import.meta.env.VITE_API}/save_review`, {user, rating, detailedInfo})
     
 
     setReviewConfirm(true)
@@ -167,9 +169,9 @@ const Details = () => {
              <div className="absolute inset-0 bg-black bg-opacity-40 z-40"></div>
             )}
           <div className="flex justify-center gap-20 row-start-2 text-white col-start-6">
-            <h2 className="ts2 z-50">MOVIES</h2>
-            <h2 className="whitespace-nowrap ts2 z-50">TV SHOWS</h2>
-            <h2 className="ts2 z-50">NEWS</h2>
+            <Link to="/popmovies"><h2 className="ts2 z-50">MOVIES</h2></Link>
+            <Link to="/poptv"><h2 className="whitespace-nowrap ts2 z-50">TV SHOWS</h2></Link>
+            <Link to="#"><h2 className="ts2 z-50">NEWS</h2></Link>
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
             <div className="flex flex-col col-span-2">

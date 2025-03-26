@@ -13,7 +13,6 @@ const [res, setRes] = useState<any[]>([])
     const fetchSearch = async() => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info, type})
-            console.log(response.data.results)
             setRes(response.data.results)
         }catch(e){
             console.error(e)
@@ -26,7 +25,6 @@ const [res, setRes] = useState<any[]>([])
         },[type, info])
 
         const handleClick = (arg: any) => {
-            console.log(arg)
             setType(arg)
         }
 

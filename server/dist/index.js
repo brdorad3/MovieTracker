@@ -8,5 +8,4 @@ const app = (0, express_1.default)();
 app.use("/", (req, res, next) => {
     res.send("uaua");
 });
-console.log("h");
 app.listen(3000);
