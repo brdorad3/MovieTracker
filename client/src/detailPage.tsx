@@ -107,8 +107,11 @@ const Details = () => {
   },[currentPage])
 
   const handleTitleSize = (title: any) => {
-    if(title.length > 30){
-      return "45px"
+    if(title.length > 40){
+      return "40px"
+    }
+    else if(title.length > 30 && title.length <= 40){
+      return "55px"
     }else if(title.length >=20 && title.length <= 25){
       return "80px"
     }
@@ -168,14 +171,14 @@ const Details = () => {
            {ratingBool && (
              <div className="absolute inset-0 bg-black bg-opacity-40 z-40"></div>
             )}
-          <div className="flex justify-center gap-20 row-start-2 text-white col-start-6">
-            <Link to="/popmovies"><h2 className="ts2 z-50">MOVIES</h2></Link>
+          <div className="flex justify-center gap-20 row-start-1 items-end text-white opacity-80 col-start-6 z-10">
+            <Link to="/popmovies"><h2 className="ts2 z-50 cursor-pointer">MOVIES</h2></Link>
             <Link to="/poptv"><h2 className="whitespace-nowrap ts2 z-50">TV SHOWS</h2></Link>
             <Link to="#"><h2 className="ts2 z-50">NEWS</h2></Link>
           </div>
-          <div className="row-start-5 flex flex-col gap-10 col-start-1 relative">
-            <div className="flex flex-col col-span-2">
-              <h1 className= "lemon  tracking-wider whitespace-nowrap text-white ts2 cus"
+          <div className="row-start-5 flex flex-col gap-10 col-start-1 relative col-span-full ">
+            <div className="flex flex-col ">
+              <h1 className= "lemon grid tracking-wider whitespace-nowrap text-white ts2 cus"
               style={{fontSize:handleTitleSize(detailedInfo.title || detailedInfo.name)}}>
                 {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
               </h1>
@@ -206,7 +209,7 @@ const Details = () => {
             </button>
           </div>
           <div className="row-start-11">
-            <p className="text-acc whitespace-nowrap b text-xl font-bold tracking-widest ts2 z-50">
+            <p className="text-acc whitespace-nowrap cool ts2 text-xl tracking-widest z-50">
               {sm}
             </p>
           </div>

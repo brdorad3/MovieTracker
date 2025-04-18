@@ -1,4 +1,4 @@
-import { Search, SunMoon } from "lucide-react"
+import { Search, SunMoon, List } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
@@ -19,7 +19,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
 
     return(
         <>
-        <nav className="h-[8%] w-full bg-first flex px-[310px] justify-between  items-center relative">
+        <nav className="h-[8%] w-full bg-first flex px-[300px] justify-between  items-center relative">
             <div className="flex items-center gap-32">
             <Link to="/"><h1 className="text-3xl text-acc font-bold pop">Robnite</h1></Link>
             <div className="col-start-3 flex gap-16">
@@ -44,9 +44,6 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
             }
             </div>
             <SignInButton><p className="text-sec cursor-pointer">LOGIN</p></SignInButton>
-            <div>
-                <Link to = "/mylist" >My list</Link>
-            </div>
             </div>
             </div>
             {search &&
@@ -65,11 +62,11 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
                 
             </div>
             }
-            <div className="flex items-center gap-20">
+            <div className="flex items-center gap-16">
             <Search className="col-start-10 justify-self-center text-sec cursor-pointer" size={30} onClick={handleClick} />
-            <SunMoon className="col-start-11 text-sec justify-self-center" size={30} />
+            <Link to={"/mylist"}><List className="text-sec" size={28}></List></Link>
             <SignedIn><UserButton/></SignedIn>
-            <SignedOut><div className="w-9 h-9 rounded-full bg-white"></div></SignedOut>
+            <SignedOut><div className="w-8 h-8 rounded-full bg-white"></div></SignedOut>
             </div>
         </nav>
         

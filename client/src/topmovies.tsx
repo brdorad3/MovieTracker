@@ -38,7 +38,7 @@ const TopMovies = () => {
                 {info &&
                 info.map((item: any, index) => (
                     <div key={index} className="flex gap-3">
-                        <Link to={`/:${item.id}`} state={item}><img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-20 h-28 rounded-md" /></Link>
+                        <Link to={`/:${item.id}`} state={item}><img loading="lazy" src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="poster" className="w-20 h-28 rounded-md" /></Link>
                         <div>
                             <Link to={`/:${item.id}`} state={item} ><p className="b font-bold text-lg">{index + 1}. {item.title}</p></Link>
                             <p>{DateTime.fromISO(item.release_date).year}</p>
