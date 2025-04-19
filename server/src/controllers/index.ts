@@ -50,7 +50,7 @@ const search_movie = asyncHandler(async(req: Request, res: Response, next: NextF
 })
 const details = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log(req.body.item)
+    
     const item = req.body.item
     if(item.media_type == "tv" || item.first_air_date){
      const response = await moviedb.tvInfo({id: item.id || item.movieId})

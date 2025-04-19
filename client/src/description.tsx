@@ -2,7 +2,6 @@
 
 const Description = (props: any) => {
         const info = props.state
-        console.log(info)
     return(
         <>
         {info &&

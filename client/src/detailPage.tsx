@@ -131,6 +131,7 @@ const Details = () => {
       );
 
       setDeleteConfirm(true)
+      setRating(0)
       setTimeout(() => {
         setDeleteConfirm(false)
       },5000)
@@ -281,11 +282,11 @@ const Details = () => {
       )}
       {
         deleteConfirm &&
-        <div className="absolute top-0 right-5 bg-red-500">Review successfully deleted!</div>
+        <div className="absolute top-10 right-10 bg-red-500 p-3 rounded-lg">Review successfully deleted!</div>
       }
        {
         reviewConfirm &&
-        <div className="absolute top-0 right-5 bg-red-500">Review successfully created!</div>
+        <div className="absolute top-10 right-10 bg-red-500 p-3 rounded-lg">Review successfully created!</div>
       }
       
     </div>
