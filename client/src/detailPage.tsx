@@ -46,6 +46,7 @@ const Details = () => {
         { item }
       );
       setDetailedInfo(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error("Error fetching data", error);
     }
@@ -102,6 +103,17 @@ const Details = () => {
         break;
     }
   }
+
+  
+  if (ratingBool) {
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `17px`;
+  } else {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  }
+
+
   useEffect(()=>{
     showPage()
   },[currentPage])
@@ -218,11 +230,22 @@ const Details = () => {
           { ratingBool &&
           <div>
           <SignedIn>
-              <div className="bg-first w-[500px] h-[275px] absolute abs rounded-lg z-50">
-                <div className="flex flex-col pt-10 pl-8 gap-7 w-fit">
-                <h2 className="text-2xl  font-bold text-sec">Select your rating</h2>
-                <div className="flex flex-col gap-7">
+              <div className="bg-first w-fit h-fit absolute abs rounded-sm z-50">
+                <div className="flex justify-between py-5 px-5 border-b border-sec">
+                <h2 className="text-xl  font-bold text-sec mont ">Select your rating</h2>
+                <div className="cursor-pointer" onClick={() => setRatingBool(false)}>
+                    <XIcon color="white" />
+                  </div>
+              
+              </div>
+                <div className="flex gap-7 py-10 px-10">
                   <div className="flex">
+                  <img className="w-36 h-52 rounded-sm shad" src={`https://image.tmdb.org/t/p/original${detailedInfo.poster_path}`} alt="poster" />
+                  </div>
+                  <div className="flex flex-col justify-between">
+                    <div className="flex flex-col gap-6">
+                  <h2 className="text-sec text-xl pop">{detailedInfo.title || detailedInfo.name}</h2>
+                  <div className="flex gap-[1px]">
                  {[...Array(10)].map((star, index) => {
                   const ratingVal = index + 1
                   return (
@@ -236,7 +259,7 @@ const Details = () => {
                       
                       />
                       <Star
-                      size={40}
+                      size={35}
                       className="star "
                       fill={ratingVal <= (hover || rating) ? "#c03221" : "#222222"}
                       color={ratingVal <= (hover || rating) ? "" : "gray"}
@@ -247,17 +270,17 @@ const Details = () => {
                   )
                  })}
                  </div>
-                   <div className="w-full">
+                 </div>
+                   <div className="w-full flex justify-end gap-2">
+                    <button className="py-1 px-2 bg-white rounded-md pop" onClick={handleDelete}>Delete review</button>
+                    <button className="bg-acc py-1 px-2 rounded-md pop shad " onClick={handleRateClick}>Rate</button>
                     
-                    <button className="w-full bg-acc py-[6px] rounded-full" onClick={handleRateClick}>Rate</button>
-                    <button className="p-1 bg-white rounded-md mt-3" onClick={handleDelete}>Delete review</button>
+                  </div>
                   </div>
                   </div>
                 
-                  </div>
-                  <div className="absolute top-3 right-3 cursor-pointer" onClick={() => setRatingBool(false)}>
-                    <XIcon color="white" />
-                  </div>
+                  
+                  
                  
               </div>
               </SignedIn>
