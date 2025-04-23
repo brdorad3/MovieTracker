@@ -131,10 +131,10 @@ const fetch_cast = asyncHandler(async(req: Request, res: Response, next: NextFun
 const fetch_search = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
   try {
     if(req.body.type == "movie"){
-      const response = await moviedb.searchMovie({query:req.body.info})
+      const response = await moviedb.searchMovie({query:req.body.query})
       res.status(200).json(response)
     }else{
-      const response = await moviedb.searchTv({query:req.body.info})
+      const response = await moviedb.searchTv({query:req.body.query})
       res.status(200).json(response)
     }
 

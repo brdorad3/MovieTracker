@@ -4,15 +4,21 @@ import { useLocation } from "react-router-dom"
 import Navbar from "./navbar"
 import { DateTime } from "luxon"
 import { Link } from "react-router-dom"
+import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
-const location = useLocation()
-const { info } = location.state
-const [type, setType] = useState(location.state.media_type)
+
+const [searchParams] = useSearchParams();
+const [type, setType] = useState(searchParams.get("tp"))
 const [res, setRes] = useState<any[]>([])
+
+const query = searchParams.get("q");
+
+console.log(query)
+
     const fetchSearch = async() => {
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {info, type})
+            const response = await axios.post(`${import.meta.env.VITE_API}/search`, {query, type})
             setRes(response.data.results)
         }catch(e){
             console.error(e)
@@ -22,7 +28,7 @@ const [res, setRes] = useState<any[]>([])
         useEffect(() => {
             fetchSearch()
             
-        },[type, info])
+        },[type, query])
 
         const handleClick = (arg: any) => {
             setType(arg)
@@ -38,7 +44,7 @@ const [res, setRes] = useState<any[]>([])
                     <p onClick={() => handleClick("tv")} style={type=="tv" ? {borderBottom: "1px solid #c03221"} : {}}>TV Shows</p>
                 </div>
                 <div className="flex flex-col  col-start-3 col-span-6">
-                    <p className="whitespace-nowrap">Showing results for "{info}"</p>
+                    <p className="whitespace-nowrap">Showing results for "{query}"</p>
             {res &&
             res.map((item: any) => (
                 <div className="flex flex-col">

@@ -45,9 +45,9 @@ const MyList = () => {
         <>
         <Navbar/>
         <div className="px-[310px]">
-        <h1 className="text-white">Your ratings.</h1>
+        <h1 className="text-gray-200 mont text-3xl py-10">Your ratings</h1>
             {
-                userData ?
+                userData && userData.length > 0 ?
                 <ul className="grid grid-cols-6 gap-x-8  gap-y-20 py-10">
                 {userData.map((review, index) => (
                     <li key={index} className="flex flex-col relative ">
@@ -66,7 +66,7 @@ const MyList = () => {
                 ))}
                 </ul>
                 :
-                <div>No lists</div>
+                <div className="text-gray-300 mont text-2xl flex justify-center">No entries!</div>
             }
             </div>
         </>

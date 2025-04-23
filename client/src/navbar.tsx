@@ -1,4 +1,4 @@
-import { Search, SunMoon, List } from "lucide-react"
+import { Search, SunMoon, List, MoveUpIcon } from "lucide-react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
@@ -10,6 +10,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
     const [tv, setTv] = useState(false)
     const [info, setinfo] = useState("")
     const navigate = useNavigate()
+    const [type, setType] = useState("movie")
 
     const handleClick = () => {
         setSearch(!search)
@@ -18,8 +19,14 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
         setinfo(e.target.value)
     }
     const handleSubmit = (info: any) => {
-         navigate("/search", {state: {info}, replace: false})
-         
+        navigate(`/search?q=${encodeURIComponent(info)}&tp=${encodeURIComponent(type)}`);
+        setSearch(false) 
+        setinfo("")
+    }
+
+    const handleLink = () => {
+        setSearch(false) 
+        setinfo("")
     }
 
     return(
@@ -58,9 +65,14 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
                 {
                     info && info.length > 2 &&
                     <div className=" w-full bg-white flex flex-col">
-                    <Link to="/search" className=" border-gray-200 px-24 pop " state={{info: info, media_type: "movie"}}>Search "{info}" in movies</Link>
+                    <Link  to={`/search?q=${encodeURIComponent(info)}&tp=movies`} 
+                    onClick={handleLink}
+                    
+                    className=" border-gray-200 px-24 pop ">Search "{info}" in movies</Link>
                     <div className="h-[1px] w-full bg-gray-200"></div>
-                    <Link to="/search" className="border-gray-200 px-24 pop" state={{info: info, media_type: "tv"}}>Search "{info}" in tv shows</Link>
+                    <Link  to={`/search?q=${encodeURIComponent(info)}&tp=tv`} 
+                    onClick={handleLink}
+                    className="border-gray-200 px-24 pop">Search "{info}" in tv shows</Link>
                     <div className="h-[1px] w-full bg-gray-200"></div>
                 </div>
                 }
