@@ -55,7 +55,7 @@ const Details = () => {
   useEffect(() => {
     
     handleClick(info);
-    window.scrollTo(0,0)
+    
     setCurrentPage("Description")
 
     if(user){
@@ -65,6 +65,7 @@ const Details = () => {
   
 
   const handlePageChange = (e: any) => {
+    
     setCurrentPage(e.target.innerText);
     
   }
