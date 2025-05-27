@@ -32,7 +32,7 @@ import "./App.css"
 
     return(
         <>
-        <nav className="h-16 w-full bg-first">
+        <nav className="h-[4.8rem] w-full bg-first relative">
             <div className="max-w-7xl container mx-auto flex h-full justify-between items-center px-4 sm:px-6 md:px-8 w-full">
             <div className="flex items-center sm:gap-32 gap-5">
             <Link to="/"><h1 className="sm:text-3xl text-acc font-bold pop">Robnite</h1></Link>

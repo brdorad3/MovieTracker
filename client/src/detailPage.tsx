@@ -120,6 +120,10 @@ const Details = () => {
   },[currentPage])
 
   const handleTitleSize = (title: any) => {
+    if(window.screen.width < 640){
+      return "50px"
+    }
+
     if(title.length > 40){
       return "40px"
     }
@@ -174,7 +178,7 @@ const Details = () => {
     
       {detailedInfo && (
         <div 
-          className={`h-screen relative bg-cover grid grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
+          className={`h-screen relative bg-cover bg-center grid grid-cols-12 sm:grid-cols-custom  grid-rows-12 justify-center before:absolute before:inset-0 before:bg-black before:opacity-30 ${ratingBool ? "overflow-hidden": ""}`}
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${detailedInfo.backdrop_path})`,
           
@@ -185,18 +189,18 @@ const Details = () => {
            {ratingBool && (
              <div className="absolute inset-0 bg-black bg-opacity-40 z-40"></div>
             )}
-          <div className="flex justify-center gap-20 row-start-1 items-end text-white opacity-80 col-start-6 z-10">
+          <div className="flex justify-center sm:gap-20 gap-10 row-start-1 items-end text-white opacity-80 col-start-6 z-10">
             <Link to="/popmovies"><h2 className="ts2 z-50 cursor-pointer">MOVIES</h2></Link>
             <Link to="/poptv"><h2 className="whitespace-nowrap ts2 z-50">TV SHOWS</h2></Link>
             <Link to="#"><h2 className="ts2 z-50">NEWS</h2></Link>
           </div>
           <div className="row-start-5 flex flex-col gap-10 col-start-1 relative col-span-full ">
             <div className="flex flex-col ">
-              <h1 className= "lemon grid tracking-wider whitespace-nowrap text-white ts2 cus"
+              <h1 className= "lemon grid tracking-wider sm:whitespace-nowrap text-white ts2 cus pl-2 sm:pl-0"
               style={{fontSize:handleTitleSize(detailedInfo.title || detailedInfo.name)}}>
-                {detailedInfo.title ? detailedInfo.title : detailedInfo.name}
+                {detailedInfo.title || detailedInfo.name}
               </h1>
-              <ul className="flex gap-5">
+              <ul className="flex xm:gap-5 gap-3 pl-2 sm:pl-0">
                 {detailedInfo.genres &&
                   detailedInfo.genres.map((item: any) => (
                     <li
@@ -210,7 +214,7 @@ const Details = () => {
               </ul>
             </div>
             <button
-              className="bg-acc pl-8 pr-4 py-[14px] rounded-full flex gap-5 whitespace-nowrap absolute top-[220px] text-xl b font-black items-center"
+              className="bg-acc sm:pl-8 pl-5 sm:pr-4 pr-3 sm:py-[14px] py-3 rounded-full flex gap-5 whitespace-nowrap absolute top-[220px] text-xl b font-black items-center ml-2 sm:ml-0"
               onClick={handleRatingClick}
             >
               <p className="tracking-wider">Your Rating</p>
@@ -223,7 +227,7 @@ const Details = () => {
             </button>
           </div>
           <div className="row-start-11">
-            <p className="text-acc whitespace-nowrap cool ts2 text-xl tracking-widest z-50">
+            <p className="text-acc whitespace-nowrap cool ts2 text-xl tracking-widest z-50 pl-2 sm:pl-0">
               {sm}
             </p>
           </div>
@@ -297,7 +301,7 @@ const Details = () => {
               <li className={`${currentPage == "Reviews" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Reviews</li>
               <li className={`${currentPage == "Cast" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Cast</li>
             </ul>
-            <div className="px-16 py-10">
+            <div className="sm:px-16 px-3 py-10">
              {showPage()}
             </div>
           </div>

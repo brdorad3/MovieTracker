@@ -37,7 +37,7 @@ console.log(query)
         return(
             <>
             <Navbar></Navbar>
-            <div  className="grid grid-cols-custom justify-center gap-x-[20px] py-14 text-sec">
+            <div  className="sm:grid sm:grid-cols-custom flex flex-col justify-center gap-x-[20px] py-14 text-sec">
                 <div className="row-start-1 col-start-1">
                     <h2 className="border-b border-sec mb-2">Filters</h2>
                     <p onClick={() => handleClick("movie")}  style={type=="movie" ? {borderBottom: "1px solid #c03221"} : {}} >Movies</p>
