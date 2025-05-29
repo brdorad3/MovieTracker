@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
 import "./App.css"
+import { truncate } from "fs"
 
 
  const Navbar  = () => {
@@ -38,7 +39,7 @@ import "./App.css"
             <Link to="/"><h1 className="sm:text-3xl text-acc font-bold pop">Robnite</h1></Link>
             <div className="col-start-3 flex sm:gap-16 gap-5">
             <div className="col-start-3 relative">
-            <p className=" text-sec cursor-pointer max-sm:text-sm " onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
+            <p className=" text-sec cursor-pointer max-sm:text-sm " tabIndex={0} onBlur={() => setMovie(false)} onClick={() => setMovie(!movie)} onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
             {movie &&
                 <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >
                     <Link to="/popmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
@@ -48,7 +49,7 @@ import "./App.css"
             }
             </div>
             <div className="col-start-3 relative">
-            <p className="text-sec whitespace-nowrap cursor-pointer max-sm:text-sm" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)}>TV SHOWS</p>
+            <p className="text-sec whitespace-nowrap cursor-pointer max-sm:text-sm" tabIndex={0} onBlur={() => setTv(false)} onClick={() => setTv(!tv)} onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)}>TV SHOWS</p>
             {tv &&
                 <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)} >
                     <Link to="/poptv"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
@@ -85,7 +86,7 @@ import "./App.css"
             <Search className="col-start-10 justify-self-center text-sec cursor-pointer sm:w-[30px] w-[22px]"  onClick={handleClick} />
             <Link to={"/mylist"}><List className="text-sec sm:w-[30px] w-[23px]" ></List></Link>
             <SignedIn><UserButton/></SignedIn>
-            <SignedOut><div className="rounded-full bg-white sm:w-[30px] w-[23px] sm:h-[30px] h-[23px]"></div></SignedOut>
+            <SignedOut><SignInButton><div className="rounded-full bg-white sm:w-[30px] w-[23px] sm:h-[30px] h-[23px]"></div></SignInButton></SignedOut>
             </div>
             </div>
         </nav>

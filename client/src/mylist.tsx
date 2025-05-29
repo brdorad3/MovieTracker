@@ -44,14 +44,14 @@ const MyList = () => {
     return (
         <>
         <Navbar/>
-        <div className="px-[310px]">
-        <h1 className="text-gray-200 mont text-3xl py-10">Your ratings</h1>
+        <div className="sm:px-[310px] px-5">
+        <h1 className="text-gray-200 mont sm:text-3xl text-2xl py-10">Your ratings</h1>
             {
                 userData && userData.length > 0 ?
-                <ul className="grid grid-cols-6 gap-x-8  gap-y-20 py-10">
+                <ul className="grid sm:grid-cols-6 grid-cols-2 sm:gap-x-8 gap-x-4 gap-y-20 py-10">
                 {userData.map((review, index) => (
                     <li key={index} className="flex flex-col relative ">
-                                            <div className="absolute -top-3 left-[75px] w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
+                                            <div className="absolute -top-3  left-1/2 -translate-x-1/2 w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
                                             style={{backgroundColor: handleBgColor(review.rating)}}
                                             >
                                                 <p>{review.rating}</p>

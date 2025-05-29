@@ -38,12 +38,12 @@ console.log(query)
             <>
             <Navbar></Navbar>
             <div  className="sm:grid sm:grid-cols-custom flex flex-col justify-center gap-x-[20px] py-14 text-sec">
-                <div className="row-start-1 col-start-1">
-                    <h2 className="border-b border-sec mb-2">Filters</h2>
-                    <p onClick={() => handleClick("movie")}  style={type=="movie" ? {borderBottom: "1px solid #c03221"} : {}} >Movies</p>
-                    <p onClick={() => handleClick("tv")} style={type=="tv" ? {borderBottom: "1px solid #c03221"} : {}}>TV Shows</p>
+                <div className="row-start-1 col-start-1 max-sm:px-3 flex-grow-0 max-sm:pb-5">
+                    <h2 className="border-b border-sec mb-2 pop text-lg">Filters</h2>
+                    <p className="pop cursor-pointer border-b border-transparent w-fit" onClick={() => handleClick("movie")}  style={type=="movie" ? {borderBottom: "1px solid #c03221"} : {}} >Movies</p>
+                    <p className="pop cursor-pointer border-b border-transparent w-fit" onClick={() => handleClick("tv")} style={type=="tv" ? {borderBottom: "1px solid #c03221"} : {}}>TV Shows</p>
                 </div>
-                <div className="flex flex-col  col-start-3 col-span-6">
+                <div className="flex flex-col  col-start-3 col-span-6 max-sm:px-3">
                     <p className="whitespace-nowrap">Showing results for "{query}"</p>
             {res &&
             res.map((item: any) => (

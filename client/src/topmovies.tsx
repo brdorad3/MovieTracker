@@ -25,7 +25,7 @@ const TopMovies = () => {
     return(
         <>
         <Navbar/>
-        <div className="px-[313px] py-5 text-sec">
+        <div className="sm:px-[313px] px-5 py-5 text-sec">
             <div className="w-full border-b border-sec flex justify-between">
             <h1>Top rated movies</h1>
             <div className="flex gap-5">

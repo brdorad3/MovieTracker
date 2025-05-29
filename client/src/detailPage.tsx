@@ -236,19 +236,19 @@ const Details = () => {
           <div>
           <SignedIn>
               <div className="bg-first w-fit h-fit absolute abs rounded-sm z-50">
-                <div className="flex justify-between py-5 px-5 border-b border-sec">
-                <h2 className="text-xl  font-bold text-sec mont ">Select your rating</h2>
+                <div className="flex justify-between sm:p-5 p-3 border-b border-sec">
+                <h2 className="text-xl font-bold text-sec mont ">Select your rating</h2>
                 <div className="cursor-pointer" onClick={() => setRatingBool(false)}>
                     <XIcon color="white" />
                   </div>
               
               </div>
-                <div className="flex gap-7 py-10 px-10">
+                <div className="flex gap-7 sm:p-10 px-4 py-8">
                   <div className="flex">
-                  <img className="w-36 h-52 rounded-sm shad" src={`https://image.tmdb.org/t/p/original${detailedInfo.poster_path}`} alt="poster" />
+                  <img className="sm:w-36 sm:h-52 w-20 h-28 rounded-sm shad" src={`https://image.tmdb.org/t/p/original${detailedInfo.poster_path}`} alt="poster" />
                   </div>
                   <div className="flex flex-col justify-between">
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col sm:gap-6 gap-2">
                   <h2 className="text-sec text-xl pop">{detailedInfo.title || detailedInfo.name}</h2>
                   <div className="flex gap-[1px]">
                  {[...Array(10)].map((star, index) => {
@@ -264,8 +264,8 @@ const Details = () => {
                       
                       />
                       <Star
-                      size={35}
-                      className="star "
+                      size={window.screen.width < 640 ? 23 : 35}
+                      className="star"
                       fill={ratingVal <= (hover || rating) ? "#c03221" : "#222222"}
                       color={ratingVal <= (hover || rating) ? "" : "gray"}
                       onMouseEnter={() => setHover(ratingVal)}
@@ -295,11 +295,11 @@ const Details = () => {
             
           <div className="w-full col-span-full bg-first shad absolute z-30 text-sec row-start-12 h-fit">
             <ul className="grid grid-cols-5 justify-items-center items-center pt-7">
-              <li className={`${currentPage == "Description" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}>Description</li>
-              <li className={`${currentPage == "Photos" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Photos</li>
-              <li className={`${currentPage == "Similar" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Similar</li>
-              <li className={`${currentPage == "Reviews" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Reviews</li>
-              <li className={`${currentPage == "Cast" && 'border-b border-red-400'}`} onClick={(e) => handlePageChange(e)}> Cast</li>
+              <li className={`${currentPage == "Description" && 'border-b border-red-400'} b`} onClick={(e) => handlePageChange(e)}>Description</li>
+              <li className={`${currentPage == "Photos" && 'border-b border-red-400'} b`} onClick={(e) => handlePageChange(e)}> Photos</li>
+              <li className={`${currentPage == "Similar" && 'border-b border-red-400'} b`} onClick={(e) => handlePageChange(e)}> Similar</li>
+              <li className={`${currentPage == "Reviews" && 'border-b border-red-400'} b`} onClick={(e) => handlePageChange(e)}> Reviews</li>
+              <li className={`${currentPage == "Cast" && 'border-b border-red-400'} b`} onClick={(e) => handlePageChange(e)}> Cast</li>
             </ul>
             <div className="sm:px-16 px-3 py-10">
              {showPage()}

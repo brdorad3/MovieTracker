@@ -65,21 +65,21 @@ const PopMovies = () => {
     return(
         <>
         <Navbar/>
-        <div className="px-[310px] py-10 bg-[#0D0F12]">
+        <div className="sm:px-[310px] px-5 py-10 bg-[#0D0F12]">
             <div className="w-full flex flex-col gap-10">
-            <h1 className="text-gray-200 mont text-3xl">Popular Movies</h1>
-            <div className="flex gap-5 items-center">
+            <h1 className="text-gray-200 mont sm:text-3xl text-2xl">Popular Movies</h1>
+            <div className="flex sm:gap-5 gap-2 sm:items-center">
                 <div className="relative flex items-center">
-                <form onSubmit={(e) => handleClick(e)} className="flex items-center text-primary-foreground">
+                <form onSubmit={(e) => handleClick(e)} className="flex items-center text-primary-foreground relative">
                 <Input value={year} placeholder="Year" onChange={handleYearChange} maxLength={4} minLength={4} min={1970} max={2026} color="white" className="placeholder:text-white" />
-                <button type="submit"> <Search type="submit" className="absolute right-2 top-[6px] text-gray-400 w-4 z-50"  /></button>
+                <button type="submit" className="absolute right-2"> <Search type="submit" className=" text-gray-400 w-4 z-50"  /></button>
                
                 </form>
                 </div>
                 <div className="relative text-primary-foreground">
                 
                 <Select onValueChange={(value) => setGenreFetch(value)} >
-                    <SelectTrigger className="w-[180px]" >
+                    <SelectTrigger className="sm:w-[180px] w-28" >
                         <SelectValue placeholder="Genre"  />
                     </SelectTrigger>
                     <SelectContent>
@@ -110,7 +110,7 @@ const PopMovies = () => {
                 </div>
                 <div className="relative text-primary-foreground">
                 <Select onValueChange={(value) => setSortFetch(value)}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="sm:w-[180px] w-28">
                         <SelectValue placeholder="Sort by" />
                     </SelectTrigger>
                     <SelectContent>
@@ -130,11 +130,11 @@ const PopMovies = () => {
                 </div>
             </div>
             </div>
-            <div className="grid grid-cols-6 gap-x-8  gap-y-20 py-10">
+            <div className="grid sm:grid-cols-6 grid-cols-2 gap-x-8  gap-y-20 py-10">
                 {info &&
                 info.map((item: any, index) => (
                     <div key={index} className="flex flex-col relative ">
-                        <div className="absolute -top-3 left-[75px] w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-8 rounded-full bg-orange-600 flex justify-center items-center"
                         style={{backgroundColor: handleBgColor(item.vote_average)}}
                         >
                             <p>{item.vote_average.toFixed(1)}</p>
