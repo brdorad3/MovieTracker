@@ -38,26 +38,79 @@ import { truncate } from "fs"
             <div className="flex items-center sm:gap-32 gap-5">
             <Link to="/"><h1 className="sm:text-3xl text-acc font-bold pop">Robnite</h1></Link>
             <div className="col-start-3 flex sm:gap-16 gap-5">
-            <div className="col-start-3 relative">
-            <p className=" text-sec cursor-pointer max-sm:text-sm " tabIndex={0} onBlur={() => setMovie(false)} onClick={() => setMovie(!movie)} onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >MOVIES</p>
-            {movie &&
-                <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setMovie(true)} onMouseOut={() => setMovie(false)} >
-                    <Link to="/popmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
-                    <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
-                   <Link to="/topmovies"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li></Link>
-                </ul>
-            }
-            </div>
-            <div className="col-start-3 relative">
-            <p className="text-sec whitespace-nowrap cursor-pointer max-sm:text-sm" tabIndex={0} onBlur={() => setTv(false)} onClick={() => setTv(!tv)} onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)}>TV SHOWS</p>
-            {tv &&
-                <ul className="absolute bg-white z-10 rounded-md shad py-1" onMouseOver={() => setTv(true)} onMouseOut={() => setTv(false)} >
-                    <Link to="/poptv"><li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li></Link>
-                    <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
-                    <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li>
-                </ul>
-            }
-            </div>
+           <div
+  className="col-start-3 relative"
+  tabIndex={0}
+  onBlur={(e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setMovie(false);
+    }
+  }}
+>
+  <p
+    className="text-sec cursor-pointer max-sm:text-sm"
+    onClick={() => setMovie(!movie)}
+    onMouseOver={() => setMovie(true)}
+    onMouseOut={() => setMovie(false)}
+  >
+    MOVIES
+  </p>
+
+  {movie && (
+    <ul
+      className="absolute bg-white z-10 rounded-md shad py-1"
+      onMouseOver={() => setMovie(true)}
+      onMouseOut={() => setMovie(false)}
+    >
+      <Link to="/popmovies">
+        <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li>
+      </Link>
+      <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
+      <Link to="/topmovies">
+        <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li>
+      </Link>
+    </ul>
+  )}
+</div>
+
+<div
+  className="col-start-3 relative"
+  tabIndex={0}
+  onBlur={(e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setTv(false);
+    }
+  }}
+>
+  <p
+    className="text-sec cursor-pointer max-sm:text-sm"
+    onClick={() => setTv(!tv)}
+    onMouseOver={() => setTv(true)}
+    onMouseOut={() => setTv(false)}
+  >
+    TV SHOWS
+  </p>
+
+  {tv && (
+    <ul
+      className="absolute bg-white z-10 rounded-md shad py-1"
+      onMouseOver={() => setTv(true)}
+      onMouseOut={() => setTv(false)}
+    >
+      <Link to="/poptv">
+        <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Popular</li>
+      </Link>
+      <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Upcoming</li>
+      
+        <li className="hover:bg-blue-300 w-full px-4 py-[6px]">Top Rated</li>
+     
+    </ul>
+  )}
+</div>
+
+
+
+           
             <SignInButton><p className="text-sec cursor-pointer max-md:hidden">LOGIN</p></SignInButton>
             </div>
             </div>
