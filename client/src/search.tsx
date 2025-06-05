@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { useLocation } from "react-router-dom"
 import Navbar from "./navbar"
 import { DateTime } from "luxon"
 import { Link } from "react-router-dom"
@@ -14,7 +13,6 @@ const [res, setRes] = useState<any[]>([])
 
 const query = searchParams.get("q");
 
-console.log(query)
 
     const fetchSearch = async() => {
         try{

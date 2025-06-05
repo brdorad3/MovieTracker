@@ -46,7 +46,6 @@ const Details = () => {
         { item }
       );
       setDetailedInfo(response.data);
-      console.log(response.data)
     } catch (error) {
       console.error("Error fetching data", error);
     }

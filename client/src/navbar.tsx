@@ -1,9 +1,9 @@
-import { Search, SunMoon, List, MoveUpIcon } from "lucide-react"
+import { Search, List} from "lucide-react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
 import "./App.css"
-import { truncate } from "fs"
+
 
 
  const Navbar  = () => {
