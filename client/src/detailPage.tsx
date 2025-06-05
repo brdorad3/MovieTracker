@@ -141,7 +141,7 @@ const Details = () => {
 
   const handleDelete = async() => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API}/delete_review`,
         { detailedInfo, user }
       );
@@ -250,7 +250,7 @@ const Details = () => {
                     <div className="flex flex-col sm:gap-6 gap-2">
                   <h2 className="text-sec text-xl pop">{detailedInfo.title || detailedInfo.name}</h2>
                   <div className="flex gap-[1px]">
-                 {[...Array(10)].map((star, index) => {
+                 {[...Array(10)].map((index) => {
                   const ratingVal = index + 1
                   return (
                     <label key={index}>

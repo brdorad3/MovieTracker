@@ -12,7 +12,7 @@ import "./App.css"
     const [tv, setTv] = useState(false)
     const [info, setinfo] = useState("")
     const navigate = useNavigate()
-    const [type, setType] = useState("movie")
+
 
     const handleClick = () => {
         setSearch(!search)
@@ -21,7 +21,7 @@ import "./App.css"
         setinfo(e.target.value)
     }
     const handleSubmit = (info: any) => {
-        navigate(`/search?q=${encodeURIComponent(info)}&tp=${encodeURIComponent(type)}`);
+        navigate(`/search?q=${encodeURIComponent(info)}&tp=${encodeURIComponent("movie")}`);
         setSearch(false) 
         setinfo("")
     }
