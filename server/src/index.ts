@@ -15,7 +15,7 @@ async function main() {
 }
 
 const corsOptions = {
-    origin: 'https://movie-tracker-mn2n6ur4d-brdorads-projects.vercel.app/',
+    origin: 'https://movie-tracker-mn2n6ur4d-brdorads-projects.vercel.app',
     credentials: true,
     optionSuccessStatus: 200
   };
