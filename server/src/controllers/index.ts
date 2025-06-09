@@ -419,6 +419,12 @@ const delete_review = asyncHandler(async(req: Request, res: Response, next: Next
 
 })
 
+const ping = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
+
+  res.status(200).send("pong")
+
+})
+
 
   export{
     search_movie,
@@ -435,5 +441,6 @@ const delete_review = asyncHandler(async(req: Request, res: Response, next: Next
     saveReview,
     fetch_user_review,
     fetch_detail_review,
-    delete_review
+    delete_review,
+    ping
   }
